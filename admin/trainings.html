@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Formations | Admin CCSOH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Bouton toggle sidebar mobile -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Ouvrir/fermer le menu admin">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="admin-wrapper d-flex">
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <a href="dashboard.html" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-flask-vial me-2"></i>Admin CCSOH</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="dashboard.html" class="nav-link text-white"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="users.html" class="nav-link text-white"><i class="fa fa-users me-2"></i>Utilisateurs</a></li>
+                <li class="nav-item mb-2"><a href="publications.html" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="data.html" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="events.html" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Rendez-vous</a></li>
+                <li class="nav-item mb-2"><a href="trainings.html" class="nav-link text-white active"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="partners.html" class="nav-link text-white"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="notifications.html" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="settings.html" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="logs.html" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="support.html" class="nav-link text-white"><i class="fa fa-question-circle me-2"></i>Support/FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content flex-grow-1">
+            <section class="py-5" id="adminTrainings">
+                <div class="container-fluid">
+                    <h2 class="fw-bold mb-4 text-gradient">Gestion des formations</h2>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 text-center">
+                                <div class="fs-2 fw-bold text-gradient">4</div>
+                                <div class="small">Formations actives</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 text-center">
+                                <div class="fs-2 fw-bold text-gradient">2</div>
+                                <div class="small">En ligne</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="glass-card p-4 text-center">
+                                <div class="fs-2 fw-bold text-gradient">2</div>
+                                <div class="small">Présentiel</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-5">
+                                <label for="trainingSearch" class="form-label">Rechercher une formation</label>
+                                <input type="text" class="form-control" id="trainingSearch" placeholder="Titre, formateur...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="trainingType" class="form-label">Type</label>
+                                <select class="form-select" id="trainingType">
+                                    <option value="">Tous</option>
+                                    <option>En ligne</option>
+                                    <option>Présentiel</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="trainingStatus" class="form-label">Statut</label>
+                                <select class="form-select" id="trainingStatus">
+                                    <option value="">Tous</option>
+                                    <option>Active</option>
+                                    <option>Terminée</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <a href="#trainingCreateModal" data-bs-toggle="modal" class="btn btn-outline-gradient">Ajouter</a>
+                                <a href="#" class="btn btn-outline-gradient ms-2">Exporter</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm mb-4">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Formateur</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Participants</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Formation Data Visualisation</td>
+                                    <td>Dr. A. Ben</td>
+                                    <td>En ligne</td>
+                                    <td>15/09/2025</td>
+                                    <td>42</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                    <td>
+                                        <a href="#trainingViewModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#trainingEditModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres formations... -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Statistiques formations -->
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Statistiques & inscriptions</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">[15/09/2025] 42 inscrits à "Formation Data Visualisation"</li>
+                            <li class="list-group-item">[10/09/2025] Nouvelle formation ajoutée</li>
+                            <!-- ...autres stats... -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal création formation -->
+            <div class="modal fade" id="trainingCreateModal" tabindex="-1" aria-labelledby="trainingCreateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="trainingCreateModalLabel">Ajouter une formation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="newTrainingTitle" class="form-label">Titre</label>
+                                    <input type="text" class="form-control" id="newTrainingTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newTrainingTrainer" class="form-label">Formateur</label>
+                                    <input type="text" class="form-control" id="newTrainingTrainer" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newTrainingType" class="form-label">Type</label>
+                                    <select class="form-select" id="newTrainingType" required>
+                                        <option>En ligne</option>
+                                        <option>Présentiel</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newTrainingDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="newTrainingDate" required>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal édition formation -->
+            <div class="modal fade" id="trainingEditModal" tabindex="-1" aria-labelledby="trainingEditModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="trainingEditModalLabel">Modifier la formation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="editTrainingTitle" class="form-label">Titre</label>
+                                    <input type="text" class="form-control" id="editTrainingTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editTrainingTrainer" class="form-label">Formateur</label>
+                                    <input type="text" class="form-control" id="editTrainingTrainer" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editTrainingType" class="form-label">Type</label>
+                                    <select class="form-select" id="editTrainingType" required>
+                                        <option>En ligne</option>
+                                        <option>Présentiel</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editTrainingDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="editTrainingDate" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editTrainingStatus" class="form-label">Statut</label>
+                                    <select class="form-select" id="editTrainingStatus" required>
+                                        <option>Active</option>
+                                        <option>Terminée</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal visualisation formation -->
+            <div class="modal fade" id="trainingViewModal" tabindex="-1" aria-labelledby="trainingViewModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="trainingViewModalLabel">Détail de la formation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Exemple de détail/statistiques de la formation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

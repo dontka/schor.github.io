@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs | Admin CCSOH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Bouton toggle sidebar mobile -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Ouvrir/fermer le menu admin">
+        <i class="fa fa-bars"></i>
+    </button>
+    <!-- Sidebar et header inclus via include ou JS -->
+    <div class="admin-wrapper d-flex">
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <a href="dashboard.html" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-flask-vial me-2"></i>Admin CCSOH</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="dashboard.html" class="nav-link text-white"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="users.html" class="nav-link text-white active"><i class="fa fa-users me-2"></i>Utilisateurs</a></li>
+                <li class="nav-item mb-2"><a href="publications.html" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="data.html" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="events.html" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Rendez-vous</a></li>
+                <li class="nav-item mb-2"><a href="trainings.html" class="nav-link text-white"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="partners.html" class="nav-link text-white"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="notifications.html" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="settings.html" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="logs.html" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="support.html" class="nav-link text-white"><i class="fa fa-question-circle me-2"></i>Support/FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content  flex-grow-1">
+            <section class="py-5" id="adminUsers">
+                <div class="container-fluid">
+                    <h2 class="fw-bold mb-4 text-gradient">Gestion avancée des utilisateurs</h2>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">120</div>
+                                <div class="small">Utilisateurs</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">5</div>
+                                <div class="small">Admins</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">110</div>
+                                <div class="small">Actifs</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">10</div>
+                                <div class="small">Inactifs</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <label for="userSearch" class="form-label">Rechercher un utilisateur</label>
+                                <input type="text" class="form-control" id="userSearch" placeholder="Nom, email...">
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <label for="userRole" class="form-label">Rôle</label>
+                                <select class="form-select" id="userRole">
+                                    <option value="">Tous</option>
+                                    <option>Admin</option>
+                                    <option>Utilisateur</option>
+                                    <option>Invité</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <button type="submit" class="btn btn-gradient w-100 mt-2 mt-md-0">Filtrer</button>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3 text-end text-md-end mt-2 mt-lg-0">
+                                <div class="d-flex flex-column flex-lg-row gap-2">
+                                    <a href="#userCreateModal" data-bs-toggle="modal" class="btn btn-outline-gradient flex-fill">Ajouter</a>
+                                    <a href="#" class="btn btn-outline-gradient flex-fill">Exporter</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm mb-4">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="d-none d-md-table-header-group">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Rôle</th>
+                                    <th>Statut</th>
+                                    <th>Dernière activité</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Nom">Jean Dupont</td>
+                                    <td data-label="Email">jean.dupont@email.com</td>
+                                    <td data-label="Rôle">Admin</td>
+                                    <td data-label="Statut"><span class="badge bg-success">Actif</span></td>
+                                    <td data-label="Dernière activité">29/06/2025</td>
+                                    <td data-label="Actions">
+                                        <a href="#userEditModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Nom">Marie Martin</td>
+                                    <td data-label="Email">marie.martin@email.com</td>
+                                    <td data-label="Rôle">Utilisateur</td>
+                                    <td data-label="Statut"><span class="badge bg-secondary">Inactif</span></td>
+                                    <td data-label="Dernière activité">15/06/2025</td>
+                                    <td data-label="Actions">
+                                        <a href="#userEditModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres utilisateurs... -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Historique des actions utilisateurs -->
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Historique des actions</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">[29/06/2025] Jean Dupont a modifié son mot de passe</li>
+                            <li class="list-group-item">[28/06/2025] Marie Martin a été désactivée</li>
+                            <!-- ...autres actions... -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal création utilisateur -->
+            <div class="modal fade" id="userCreateModal" tabindex="-1" aria-labelledby="userCreateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userCreateModalLabel">Créer un utilisateur</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="newUserName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="newUserName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newUserEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="newUserEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newUserRole" class="form-label">Rôle</label>
+                                    <select class="form-select" id="newUserRole" required>
+                                        <option>Utilisateur</option>
+                                        <option>Admin</option>
+                                        <option>Invité</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newUserStatus" class="form-label">Statut</label>
+                                    <select class="form-select" id="newUserStatus" required>
+                                        <option>Actif</option>
+                                        <option>Inactif</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Créer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal édition utilisateur -->
+            <div class="modal fade" id="userEditModal" tabindex="-1" aria-labelledby="userEditModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userEditModalLabel">Modifier l'utilisateur</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="editUserName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="editUserName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editUserEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="editUserEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editUserRole" class="form-label">Rôle</label>
+                                    <select class="form-select" id="editUserRole" required>
+                                        <option>Utilisateur</option>
+                                        <option>Admin</option>
+                                        <option>Invité</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editUserStatus" class="form-label">Statut</label>
+                                    <select class="form-select" id="editUserStatus" required>
+                                        <option>Actif</option>
+                                        <option>Inactif</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

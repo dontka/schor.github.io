@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Partenaires | Admin CCSOH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Bouton toggle sidebar mobile -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Ouvrir/fermer le menu admin">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="admin-wrapper d-flex">
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <a href="dashboard.html" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-flask-vial me-2"></i>Admin CCSOH</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="dashboard.html" class="nav-link text-white"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="users.html" class="nav-link text-white"><i class="fa fa-users me-2"></i>Utilisateurs</a></li>
+                <li class="nav-item mb-2"><a href="publications.html" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="data.html" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="events.html" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Rendez-vous</a></li>
+                <li class="nav-item mb-2"><a href="trainings.html" class="nav-link text-white"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="partners.html" class="nav-link text-white active"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="notifications.html" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="settings.html" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="logs.html" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="support.html" class="nav-link text-white"><i class="fa fa-question-circle me-2"></i>Support/FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content flex-grow-1">
+            <section class="py-5" id="adminPartners">
+                <div class="container-fluid">
+                    <h2 class="fw-bold mb-4 text-gradient">Gestion des partenaires/organisations</h2>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">12</div>
+                                <div class="small">Partenaires actifs</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">3</div>
+                                <div class="small">ONG</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">4</div>
+                                <div class="small">Universités</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <label for="partnerSearch" class="form-label">Rechercher un partenaire</label>
+                                <input type="text" class="form-control" id="partnerSearch" placeholder="Nom, secteur...">
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-2">
+                                <label for="partnerType" class="form-label">Type</label>
+                                <select class="form-select" id="partnerType">
+                                    <option value="">Tous</option>
+                                    <option>ONG</option>
+                                    <option>Université</option>
+                                    <option>PME</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-4 text-end text-md-end mt-2 mt-md-0">
+                                <div class="d-flex flex-column flex-lg-row gap-2">
+                                    <a href="#partnerCreateModal" data-bs-toggle="modal" class="btn btn-outline-gradient flex-fill">Ajouter</a>
+                                    <a href="#" class="btn btn-outline-gradient flex-fill">Exporter</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm mb-4">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="d-none d-md-table-header-group">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Secteur</th>
+                                    <th>Contact</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Nom">ONG HumanData</td>
+                                    <td data-label="Secteur">Humanitaire</td>
+                                    <td data-label="Contact">contact@humandata.org</td>
+                                    <td data-label="Actions">
+                                        <a href="#partnerViewModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#partnerEditModal" data-bs-toggle="modal" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres partenaires... -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Suivi partenaires -->
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Suivi & documents</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">[28/06/2025] Convention signée avec "ONG HumanData"</li>
+                            <li class="list-group-item">[15/06/2025] Nouveau partenariat avec Université X</li>
+                            <!-- ...autres suivis... -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal création partenaire -->
+            <div class="modal fade" id="partnerCreateModal" tabindex="-1" aria-labelledby="partnerCreateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="partnerCreateModalLabel">Ajouter un partenaire</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="newPartnerName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="newPartnerName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPartnerSector" class="form-label">Secteur</label>
+                                    <input type="text" class="form-control" id="newPartnerSector" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPartnerContact" class="form-label">Contact</label>
+                                    <input type="email" class="form-control" id="newPartnerContact" required>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Ajouter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal édition partenaire -->
+            <div class="modal fade" id="partnerEditModal" tabindex="-1" aria-labelledby="partnerEditModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="partnerEditModalLabel">Modifier le partenaire</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="editPartnerName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="editPartnerName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editPartnerSector" class="form-label">Secteur</label>
+                                    <input type="text" class="form-control" id="editPartnerSector" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editPartnerContact" class="form-label">Contact</label>
+                                    <input type="email" class="form-control" id="editPartnerContact" required>
+                                </div>
+                                <button type="submit" class="btn btn-gradient">Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal visualisation partenaire -->
+            <div class="modal fade" id="partnerViewModal" tabindex="-1" aria-labelledby="partnerViewModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="partnerViewModalLabel">Détail du partenaire</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Exemple de détail/suivi du partenaire.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

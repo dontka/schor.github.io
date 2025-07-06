@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tableau de bord administrateur CCSOH.">
+    <title>Admin Dashboard | CCSOH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Bouton toggle sidebar mobile -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Ouvrir/fermer le menu admin">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="admin-wrapper d-flex">
+        <!-- Sidebar navigation -->
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <a href="#adminDashboard" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-flask-vial me-2"></i>Admin CCSOH</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="#adminDashboard" class="nav-link text-white"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="#adminUsers" class="nav-link text-white"><i class="fa fa-users me-2"></i>Utilisateurs</a></li>
+                <li class="nav-item mb-2"><a href="#adminPublications" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="#adminData" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="#adminEvents" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Rendez-vous</a></li>
+                <li class="nav-item mb-2"><a href="#adminTrainings" class="nav-link text-white"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="#adminPartners" class="nav-link text-white"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="#adminNotifications" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="#adminSettings" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="#adminLogs" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="#adminSupport" class="nav-link text-white"><i class="fa fa-question-circle me-2"></i>Support/FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content flex-grow-1">
+            <!-- Dashboard synthétique -->
+            <section class="py-5" id="adminDashboard">
+                <div class="container-fluid">
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">120</div>
+                                <div class="small">Utilisateurs</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">45</div>
+                                <div class="small">Publications</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">18</div>
+                                <div class="small">Jeux de données</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100">
+                                <div class="fs-2 fw-bold text-gradient">7</div>
+                                <div class="small">Rendez-vous</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-lg-8">
+                            <div class="glass-card p-4 h-100">
+                                <h5 class="fw-bold mb-3">Statistiques globales</h5>
+                                <canvas id="adminStatsChart" height="120"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="glass-card p-4 h-100">
+                                <h5 class="fw-bold mb-3">Notifications récentes</h5>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Nouvel utilisateur inscrit</li>
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Publication en attente de validation</li>
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Rendez-vous confirmé</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <form class="d-flex flex-column flex-md-row mb-3 gap-2">
+                                <input class="form-control flex-fill" type="search" placeholder="Recherche globale..." aria-label="Recherche">
+                                <button class="btn btn-gradient" type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion utilisateurs -->
+            <section class="py-5 bg-light" id="adminUsers">
+                <div class="container">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Utilisateurs</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="userSearch" class="form-label">Rechercher un utilisateur</label>
+                                <input type="text" class="form-control" id="userSearch" placeholder="Nom, email...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="userRole" class="form-label">Rôle</label>
+                                <select class="form-select" id="userRole">
+                                    <option value="">Tous</option>
+                                    <option>Admin</option>
+                                    <option>Utilisateur</option>
+                                    <option>Invité</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <a href="#" class="btn btn-outline-gradient">Ajouter</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Rôle</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jean Dupont</td>
+                                    <td>jean.dupont@email.com</td>
+                                    <td>Admin</td>
+                                    <td><span class="badge bg-success">Actif</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Marie Martin</td>
+                                    <td>marie.martin@email.com</td>
+                                    <td>Utilisateur</td>
+                                    <td><span class="badge bg-secondary">Inactif</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres utilisateurs... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion publications -->
+            <section class="py-5" id="adminPublications">
+                <div class="container">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Publications</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-6">
+                                <label for="pubSearch" class="form-label">Rechercher une publication</label>
+                                <input type="text" class="form-control" id="pubSearch" placeholder="Titre, auteur...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="pubType" class="form-label">Type</label>
+                                <select class="form-select" id="pubType">
+                                    <option value="">Tous</option>
+                                    <option>Blog</option>
+                                    <option>Journal</option>
+                                    <option>Rapport</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Auteur</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Impact de la data science</td>
+                                    <td>Jean Dupont</td>
+                                    <td>Rapport</td>
+                                    <td>12/06/2025</td>
+                                    <td><span class="badge bg-warning">En attente</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-check"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Transparence et innovation</td>
+                                    <td>Marie Martin</td>
+                                    <td>Blog</td>
+                                    <td>05/05/2025</td>
+                                    <td><span class="badge bg-success">Publié</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres publications... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion données -->
+            <section class="py-5 bg-light" id="adminData">
+                <div class="container">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Données</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-6">
+                                <label for="dataSearch" class="form-label">Rechercher un jeu de données</label>
+                                <input type="text" class="form-control" id="dataSearch" placeholder="Nom, auteur...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="dataType" class="form-label">Type</label>
+                                <select class="form-select" id="dataType">
+                                    <option value="">Tous</option>
+                                    <option>Quantitatif</option>
+                                    <option>Qualitatif</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Auteur</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enquête PME 2025</td>
+                                    <td>Jean Dupont</td>
+                                    <td>Quantitatif</td>
+                                    <td>01/04/2025</td>
+                                    <td><span class="badge bg-success">Disponible</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rapport ONG 2024</td>
+                                    <td>Marie Martin</td>
+                                    <td>Qualitatif</td>
+                                    <td>15/12/2024</td>
+                                    <td><span class="badge bg-secondary">Archivé</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres jeux de données... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion rendez-vous/événements -->
+            <section class="py-5" id="adminEvents">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Rendez-vous & Événements</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="eventSearch" class="form-label">Rechercher un événement</label>
+                                <input type="text" class="form-control" id="eventSearch" placeholder="Titre, participant...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="eventType" class="form-label">Type</label>
+                                <select class="form-select" id="eventType">
+                                    <option value="">Tous</option>
+                                    <option>Rendez-vous</option>
+                                    <option>Webinaire</option>
+                                    <option>Atelier</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <a href="#" class="btn btn-outline-gradient">Ajouter</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Participants</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Webinaire Data Science</td>
+                                    <td>10/07/2025</td>
+                                    <td>Webinaire</td>
+                                    <td>35</td>
+                                    <td><span class="badge bg-success">À venir</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Atelier PME</td>
+                                    <td>22/06/2025</td>
+                                    <td>Atelier</td>
+                                    <td>18</td>
+                                    <td><span class="badge bg-secondary">Terminé</span></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres événements... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion formations -->
+            <section class="py-5 bg-light" id="adminTrainings">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Formations</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="trainingSearch" class="form-label">Rechercher une formation</label>
+                                <input type="text" class="form-control" id="trainingSearch" placeholder="Titre, formateur...">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="trainingType" class="form-label">Type</label>
+                                <select class="form-select" id="trainingType">
+                                    <option value="">Tous</option>
+                                    <option>En ligne</option>
+                                    <option>Présentiel</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <a href="#" class="btn btn-outline-gradient">Ajouter</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Formateur</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Participants</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Formation Data Visualisation</td>
+                                    <td>Dr. A. Ben</td>
+                                    <td>En ligne</td>
+                                    <td>15/09/2025</td>
+                                    <td>42</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres formations... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion partenaires -->
+            <section class="py-5" id="adminPartners">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Partenaires & Organisations</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-6">
+                                <label for="partnerSearch" class="form-label">Rechercher un partenaire</label>
+                                <input type="text" class="form-control" id="partnerSearch" placeholder="Nom, secteur...">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-gradient w-100">Filtrer</button>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                <a href="#" class="btn btn-outline-gradient">Ajouter</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive glass-card p-3 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Secteur</th>
+                                    <th>Contact</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ONG HumanData</td>
+                                    <td>Humanitaire</td>
+                                    <td>contact@humandata.org</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-gradient me-1"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- ...autres partenaires... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section gestion notifications/messages -->
+            <section class="py-5 bg-light" id="adminNotifications">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Gestion des Notifications & Messages</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3 align-items-end">
+                            <div class="col-md-8">
+                                <label for="notifMessage" class="form-label">Nouveau message/notification</label>
+                                <input type="text" class="form-control" id="notifMessage" placeholder="Votre message...">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="notifTarget" class="form-label">Cible</label>
+                                <select class="form-select" id="notifTarget">
+                                    <option value="">Tous</option>
+                                    <option>Utilisateurs</option>
+                                    <option>Admins</option>
+                                    <option>Partenaires</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-gradient w-100">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm">
+                        <h5 class="fw-bold mb-3">Historique des notifications</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">[28/06/2025] Nouvelle formation ajoutée</li>
+                            <li class="list-group-item">[25/06/2025] Maintenance prévue le 30/06</li>
+                            <li class="list-group-item">[20/06/2025] Publication validée</li>
+                            <!-- ...autres notifications... -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Section paramètres du centre -->
+            <section class="py-5" id="adminSettings">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Paramètres du Centre</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <form class="row g-3">
+                            <div class="col-md-4">
+                                <label for="centerName" class="form-label">Nom du centre</label>
+                                <input type="text" class="form-control" id="centerName" value="CCSOH">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="centerLogo" class="form-label">Logo</label>
+                                <input type="file" class="form-control" id="centerLogo">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="centerColor" class="form-label">Couleur principale</label>
+                                <input type="color" class="form-control form-control-color" id="centerColor" value="#6366f1">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="centerDesc" class="form-label">Description</label>
+                                <textarea class="form-control" id="centerDesc" rows="2">Centre de Consultance Scientifique et d’Orientation Humanitaire.</textarea>
+                            </div>
+                            <div class="col-md-12 text-end">
+                                <button type="submit" class="btn btn-gradient">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- Section logs d'activité et audit -->
+            <section class="py-5 bg-light" id="adminLogs">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Logs d’Activité & Audit</h3>
+                    <div class="glass-card p-4 shadow-sm">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Utilisateur</th>
+                                    <th>Action</th>
+                                    <th>Détail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>29/06/2025</td>
+                                    <td>admin</td>
+                                    <td>Suppression</td>
+                                    <td>Suppression d’un jeu de données</td>
+                                </tr>
+                                <tr>
+                                    <td>28/06/2025</td>
+                                    <td>mmartin</td>
+                                    <td>Ajout</td>
+                                    <td>Ajout d’un partenaire</td>
+                                </tr>
+                                <!-- ...autres logs... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- Section support/FAQ admin -->
+            <section class="py-5" id="adminSupport">
+                <div class="container-fluid">
+                    <h3 class="fw-bold mb-4 text-gradient">Support & FAQ Administrateur</h3>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Questions fréquentes</h5>
+                        <div class="accordion" id="adminFaqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqA1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA1" aria-expanded="true" aria-controls="collapseA1">
+                                        Comment ajouter un nouvel utilisateur ?
+                                    </button>
+                                </h2>
+                                <div id="collapseA1" class="accordion-collapse collapse show" aria-labelledby="faqA1" data-bs-parent="#adminFaqAccordion">
+                                    <div class="accordion-body">
+                                        Utilisez la section « Utilisateurs » puis cliquez sur « Ajouter ».
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqA2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA2" aria-expanded="false" aria-controls="collapseA2">
+                                        Comment envoyer une notification ciblée ?
+                                    </button>
+                                </h2>
+                                <div id="collapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#adminFaqAccordion">
+                                    <div class="accordion-body">
+                                        Utilisez la section « Notifications » et choisissez la cible avant d’envoyer.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ...autres questions... -->
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm">
+                        <h5 class="fw-bold mb-3">Documentation interne</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#" class="text-gradient">Guide d’utilisation du panneau admin</a></li>
+                            <li class="list-group-item"><a href="#" class="text-gradient">Procédures de sécurité</a></li>
+                            <li class="list-group-item"><a href="#" class="text-gradient">Contact support technique</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
