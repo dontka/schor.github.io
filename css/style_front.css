@@ -128,8 +128,8 @@ body {
 }
 .schor-navbar-premium {
   background: rgba(255,255,255,0.98);
-  box-shadow: 0 4px 24px rgba(0,47,108,0.10);
-  border-bottom: 2px solid var(--border);
+  box-shadow: 0 4px 24px rgba(10,35,66,0.10);
+  border-bottom: 1.5px solid #eaf6ff;
   min-height: 72px;
   border-radius: 0 0 2.2rem 2.2rem;
   z-index: 100;
@@ -147,13 +147,13 @@ body {
   color: var(--primary) !important;
 }
 .schor-navbar .nav-link {
-  color: var(--text-main) !important;
+  color: #222 !important;
   font-weight: 500;
   font-size: 1.08rem;
   transition: color 0.2s;
 }
 .schor-navbar-premium .nav-link {
-  color: var(--text-main) !important;
+  color: #222 !important;
   font-weight: 500;
   font-size: 1.08rem;
   transition: color 0.2s, background 0.2s;
@@ -165,7 +165,7 @@ body {
 }
 .schor-navbar-premium .nav-link:hover {
   color: var(--primary) !important;
-  background: var(--bg-alt);
+  background: #f5f8fa;
 }
 .schor-navbar .btn-primary {
   background: var(--primary);
@@ -175,19 +175,19 @@ body {
 }
 .schor-navbar .btn-primary:hover {
   background: var(--secondary);
-  color: #fff;
+  color: var(--dark);
 }
 .btn-gradient {
   background: var(--gradient-btn);
   color: #fff;
   border: none;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(255,127,0,0.10);
+  box-shadow: 0 2px 8px rgba(10,110,189,0.10);
   transition: background 0.2s, color 0.2s;
 }
 .btn-gradient:hover {
-  background: var(--primary);
-  color: #fff;
+  background: var(--secondary);
+  color: var(--dark);
 }
 .btn-outline-primary {
   border-radius: 2rem;
@@ -195,8 +195,8 @@ body {
   font-weight: 500;
 }
 .btn-outline-gradient {
-  border: 2px solid var(--primary);
-  color: var(--primary);
+  border: 2px solid #0a6ebd;
+  color: #0a6ebd;
   background: #fff;
   font-weight: 500;
   transition: background 0.2s, color 0.2s;
@@ -258,20 +258,20 @@ body {
   transform: translateY(-4px) scale(1.02);
 }
 .schor-section-premium {
-  background: var(--bg-main);
+  background: #f8fafd;
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
 .schor-card-premium {
-  background: #fff;
+  background: rgba(255,255,255,0.95);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(0,47,108,0.10);
-  border: 1.5px solid var(--border);
+  box-shadow: 0 4px 24px rgba(10,35,66,0.10);
+  border: none;
   transition: box-shadow 0.2s, transform 0.2s;
   backdrop-filter: blur(2px);
 }
 .schor-card-premium:hover {
-  box-shadow: 0 12px 32px rgba(255,127,0,0.16);
+  box-shadow: 0 12px 32px rgba(10,35,66,0.16);
   transform: translateY(-6px) scale(1.03);
 }
 .schor-section-premium .section-title {
@@ -456,7 +456,7 @@ footer a:hover {
   position: absolute;
   top: 18px;
   left: 18px;
-  background: var(--primary);
+  background: var(--gradient-btn);
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
