@@ -1,0 +1,197 @@
+<!-- Tableau de bord utilisateur -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SCHOR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.25);z-index:1039;"></div>
+    <div class="admin-wrapper d-flex">
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <button class="btn btn-link text-white d-lg-none align-self-end mb-3" id="sidebarClose" style="font-size:1.5rem;"><i class="fa fa-times"></i></button>
+            <a href="dashboard.html" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-user me-2"></i>Mon espace</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="dashboard.html" class="nav-link text-white active"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="projects.html" class="nav-link text-white"><i class="fa fa-briefcase me-2"></i>Projets</a></li>
+                <li class="nav-item mb-2"><a href="publications.html" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="data.html" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="events.html" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Événements</a></li>
+                <li class="nav-item mb-2"><a href="trainings.html" class="nav-link text-white"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="partners.html" class="nav-link text-white"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="notifications.html" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="settings.html" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="logs.html" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="support.html" class="nav-link text-white"><i class="fa fa-question-circle me-2"></i>Support</a></li>
+                <li class="nav-item mb-2"><a href="search.html" class="nav-link text-white"><i class="fa fa-search me-2"></i>Recherche</a></li>
+                <li class="nav-item mb-2"><a href="widgets.html" class="nav-link text-white"><i class="fa fa-th-large me-2"></i>Widgets</a></li>
+                <li class="nav-item mt-3"><a href="login.html" class="nav-link text-info"><i class="fa fa-sign-out-alt me-2"></i>Déconnexion</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content flex-grow-1">
+
+
+
+
+
+            <section class="py-4">
+                <div class="container-fluid">
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100 shadow-sm">
+                                <div class="fs-2 fw-bold text-gradient">5</div>
+                                <div class="small">Projets</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100 shadow-sm">
+                                <div class="fs-2 fw-bold text-gradient">3</div>
+                                <div class="small">Publications</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100 shadow-sm">
+                                <div class="fs-2 fw-bold text-gradient">2</div>
+                                <div class="small">Données</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="glass-card p-4 text-center h-100 shadow-sm">
+                                <div class="fs-2 fw-bold text-gradient">1</div>
+                                <div class="small">Événements</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-lg-8">
+                            <div class="glass-card p-4 h-100 shadow-sm">
+                                <h5 class="fw-bold mb-3">Évolution de l'activité</h5>
+                                <canvas id="userStatsChart" height="120"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="glass-card p-4 h-100 shadow-sm mb-4">
+                                <h5 class="fw-bold mb-3">Notifications récentes</h5>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Votre projet "Santé 2025" a été validé</li>
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Nouvelle formation disponible</li>
+                                    <li class="mb-2"><i class="fa fa-bell text-gradient me-2"></i>Publication en attente de validation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-lg-8">
+                            <div class="glass-card p-4 h-100 shadow-sm">
+                                <h5 class="fw-bold mb-3">Historique des dernières actions</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item">29/06/2025 - Projet "Santé 2025" modifié</li>
+                                    <li class="list-group-item">28/06/2025 - Nouvelle publication soumise</li>
+                                    <li class="list-group-item">27/06/2025 - Données importées</li>
+                                    <li class="list-group-item">26/06/2025 - Formation suivie</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="glass-card p-4 h-100 shadow-sm">
+                                <h5 class="fw-bold mb-3">À faire / Rappels</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Finaliser le business plan
+                                        <span class="badge bg-warning">À faire</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Participer à la formation "Gestion projet"
+                                        <span class="badge bg-info">Demain</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Valider la publication "Rapport 2025"
+                                        <span class="badge bg-danger">Urgent</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="glass-card p-4 d-flex flex-wrap gap-3 align-items-center shadow-sm justify-content-center">
+                                <a href="projects.html" class="btn btn-gradient"><i class="fa fa-briefcase me-2"></i>Mes projets</a>
+                                <a href="publications.html" class="btn btn-gradient"><i class="fa fa-newspaper me-2"></i>Mes publications</a>
+                                <a href="data.html" class="btn btn-gradient"><i class="fa fa-database me-2"></i>Mes données</a>
+                                <a href="events.html" class="btn btn-gradient"><i class="fa fa-calendar-alt me-2"></i>Mes événements</a>
+                                <a href="trainings.html" class="btn btn-gradient"><i class="fa fa-chalkboard-teacher me-2"></i>Mes formations</a>
+                                <a href="notifications.html" class="btn btn-gradient"><i class="fa fa-bell me-2"></i>Notifications</a>
+                                <a href="partners.html" class="btn btn-gradient"><i class="fa fa-handshake me-2"></i>Partenaires</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+    // Sidebar toggle pour mobile
+    const sidebar = document.querySelector('.admin-sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    document.getElementById('sidebarToggle').onclick = function() {
+        sidebar.classList.add('active');
+        overlay.style.display = 'block';
+    };
+    document.getElementById('sidebarClose').onclick = function() {
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    };
+    overlay.onclick = function() {
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    };
+    // Fermer la sidebar sur redimensionnement desktop
+    window.addEventListener('resize', function() {
+        if(window.innerWidth >= 992) {
+            sidebar.classList.remove('active');
+            overlay.style.display = 'none';
+        }
+    });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // Graphique d'évolution utilisateur (exemple statique)
+    const ctx = document.getElementById('userStatsChart');
+    if(ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+                datasets: [{
+                    label: 'Projets',
+                    data: [1,2,2,3,4,5],
+                    borderColor: 'rgba(99,102,241,1)',
+                    backgroundColor: 'rgba(99,102,241,0.1)',
+                    tension: 0.4,
+                    fill: true
+                },{
+                    label: 'Publications',
+                    data: [0,1,1,2,2,3],
+                    borderColor: 'rgba(6,182,212,1)',
+                    backgroundColor: 'rgba(6,182,212,0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                plugins: { legend: { display: true } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+    </script>
+</body>
+</html>

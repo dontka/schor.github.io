@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & FAQ | Admin CCSOH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Bouton toggle sidebar mobile -->
+    <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Ouvrir/fermer le menu admin">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="admin-wrapper d-flex">
+        <nav class="admin-sidebar bg-gradient-primary text-white p-4 d-flex flex-column flex-shrink-0" style="min-width:260px;min-height:100vh;">
+            <a href="dashboard.html" class="navbar-brand fw-bold fs-4 mb-4 text-white"><i class="fa-solid fa-flask-vial me-2"></i>Admin CCSOH</a>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item mb-2"><a href="dashboard.html" class="nav-link text-white"><i class="fa fa-chart-pie me-2"></i>Tableau de bord</a></li>
+                <li class="nav-item mb-2"><a href="users.html" class="nav-link text-white"><i class="fa fa-users me-2"></i>Utilisateurs</a></li>
+                <li class="nav-item mb-2"><a href="publications.html" class="nav-link text-white"><i class="fa fa-newspaper me-2"></i>Publications</a></li>
+                <li class="nav-item mb-2"><a href="data.html" class="nav-link text-white"><i class="fa fa-database me-2"></i>Données</a></li>
+                <li class="nav-item mb-2"><a href="events.html" class="nav-link text-white"><i class="fa fa-calendar-alt me-2"></i>Rendez-vous</a></li>
+                <li class="nav-item mb-2"><a href="trainings.html" class="nav-link text-white"><i class="fa fa-chalkboard-teacher me-2"></i>Formations</a></li>
+                <li class="nav-item mb-2"><a href="partners.html" class="nav-link text-white"><i class="fa fa-handshake me-2"></i>Partenaires</a></li>
+                <li class="nav-item mb-2"><a href="notifications.html" class="nav-link text-white"><i class="fa fa-bell me-2"></i>Notifications</a></li>
+                <li class="nav-item mb-2"><a href="settings.html" class="nav-link text-white"><i class="fa fa-cogs me-2"></i>Paramètres</a></li>
+                <li class="nav-item mb-2"><a href="logs.html" class="nav-link text-white"><i class="fa fa-history me-2"></i>Logs</a></li>
+                <li class="nav-item mb-2"><a href="support.html" class="nav-link text-white active"><i class="fa fa-question-circle me-2"></i>Support/FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="admin-content flex-grow-1">
+            <section class="py-5" id="adminSupport">
+                <div class="container-fluid">
+                    <h2 class="fw-bold mb-4 text-gradient">Support & FAQ administrateur</h2>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="glass-card p-4 text-center">
+                                <div class="fs-2 fw-bold text-gradient">8</div>
+                                <div class="small">Questions fréquentes</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="glass-card p-4 text-center">
+                                <div class="fs-2 fw-bold text-gradient">3</div>
+                                <div class="small">Guides internes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Questions fréquentes</h5>
+                        <div class="accordion" id="adminFaqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqA1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA1" aria-expanded="true" aria-controls="collapseA1">
+                                        Comment ajouter un nouvel utilisateur ?
+                                    </button>
+                                </h2>
+                                <div id="collapseA1" class="accordion-collapse collapse show" aria-labelledby="faqA1" data-bs-parent="#adminFaqAccordion">
+                                    <div class="accordion-body">
+                                        Utilisez la section « Utilisateurs » puis cliquez sur « Ajouter ».
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqA2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseA2" aria-expanded="false" aria-controls="collapseA2">
+                                        Comment envoyer une notification ciblée ?
+                                    </button>
+                                </h2>
+                                <div id="collapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#adminFaqAccordion">
+                                    <div class="accordion-body">
+                                        Utilisez la section « Notifications » et choisissez la cible avant d’envoyer.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ...autres questions... -->
+                        </div>
+                    </div>
+                    <div class="glass-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-3">Documentation interne</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#" class="text-gradient">Guide d’utilisation du panneau admin</a></li>
+                            <li class="list-group-item"><a href="#" class="text-gradient">Procédures de sécurité</a></li>
+                            <li class="list-group-item"><a href="#" class="text-gradient">Contact support technique</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
