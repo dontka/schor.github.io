@@ -1,3 +1,102 @@
+/* Sidebar premium publications */
+#sidebarPublications {
+  min-width: 220px;
+  max-width: 340px;
+  z-index: 10;
+}
+#sidebarPublications .card {
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px 0 rgba(79,140,255,0.07);
+  border: 1.5px solid #e0e7ff;
+  background: #f8fafc;
+}
+#sidebarPublications .nav-link {
+  color: #2a2a4f;
+  font-weight: 500;
+  border-radius: 1.2rem;
+  transition: background 0.15s, color 0.15s;
+  padding: 0.5em 1em;
+}
+#sidebarPublications .nav-link:hover, #sidebarPublications .nav-link:focus {
+  background: linear-gradient(90deg, #e0e7ff 60%, #f8fafc 100%);
+  color: #4f8cff;
+  outline: none;
+}
+#sidebarPublications .nav-link.active {
+  background: #4f8cff22;
+  color: #4f8cff;
+}
+@media (max-width: 991px) {
+  #sidebarPublications {
+    position: static;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  #sidebarPublications .card {
+    position: static;
+    top: auto;
+  }
+}
+
+/* Premium, moderne et professionnel pour formation.html */
+.text-gradient-premium {
+  background: linear-gradient(90deg, #0d6efd 0%, #6f42c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+}
+.bg-gradient-premium {
+  background: linear-gradient(90deg, #0d6efd 0%, #6f42c1 100%) !important;
+  color: #fff !important;
+  border: none;
+}
+.premium-section {
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(13, 110, 253, 0.08), 0 1.5px 8px rgba(111, 66, 193, 0.08);
+  background: #fff;
+}
+.premium-bg-gradient {
+  background: linear-gradient(120deg, #0d6efd 0%, #6f42c1 100%);
+}
+.premium-img-hero, .premium-img-graph {
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(13, 110, 253, 0.10), 0 1.5px 8px rgba(111, 66, 193, 0.10);
+}
+.premium-list li {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #333;
+}
+.premium-impact-box {
+  border-left: 5px solid #0d6efd;
+  background: rgba(255,255,255,0.95);
+}
+.premium-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 1.5rem;
+  background: #f8f9fa;
+}
+.premium-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(13, 110, 253, 0.12), 0 1.5px 8px rgba(111, 66, 193, 0.12);
+  background: #fff;
+}
+.premium-icon {
+  filter: drop-shadow(0 2px 8px rgba(13,110,253,0.10));
+}
+.text-premium-dark {
+  color: #2d2d44;
+}
+@media (max-width: 767px) {
+  .premium-section, .premium-img-hero, .premium-img-graph {
+    border-radius: 1rem;
+  }
+  .premium-card {
+    border-radius: 1rem;
+  }
+}
 /* SCHOR - Style principal */
 body {
   font-family: 'Poppins', Arial, sans-serif;
@@ -5,14 +104,19 @@ body {
   color: #222;
 }
 :root {
-  --primary: #0a2342;
-  --secondary: #f7b731;
-  --accent: #1abc9c;
-  --dark: #222;
-  --light: #f8fafd;
-  --gradient: linear-gradient(90deg, #0a2342 0%, #0a6ebd 100%);
-  --gradient-btn: linear-gradient(90deg, #0a6ebd 0%, #1abc9c 100%);
-  --footer-bg: #0a2342;
+  --primary: #FF7F00; /* Orange vif */
+  --secondary: #002F6C; /* Bleu marine */
+  --accent: #4A90E2; /* Bleu clair */
+  --text-main: #2C2C2C; /* Texte principal */
+  --text-secondary: #666666; /* Texte secondaire */
+  --bg-main: #FAFAFA; /* Fond clair */
+  --bg-alt: #F0F2F5; /* Fond alternatif */
+  --border: #D9D9D9; /* Bordures */
+  --success: #4CAF50; /* Succès */
+  --error: #F44336; /* Erreur */
+  --gradient: linear-gradient(90deg, #FF7F00 0%, #002F6C 100%);
+  --gradient-btn: linear-gradient(90deg, #FF7F00 0%, #4A90E2 100%);
+  --footer-bg: #002F6C;
 }
 .navbar {
   box-shadow: 0 2px 8px rgba(10,110,189,0.07);
@@ -24,8 +128,8 @@ body {
 }
 .schor-navbar-premium {
   background: rgba(255,255,255,0.98);
-  box-shadow: 0 4px 24px rgba(10,35,66,0.10);
-  border-bottom: 1.5px solid #eaf6ff;
+  box-shadow: 0 4px 24px rgba(0,47,108,0.10);
+  border-bottom: 2px solid var(--border);
   min-height: 72px;
   border-radius: 0 0 2.2rem 2.2rem;
   z-index: 100;
@@ -43,13 +147,13 @@ body {
   color: var(--primary) !important;
 }
 .schor-navbar .nav-link {
-  color: #222 !important;
+  color: var(--text-main) !important;
   font-weight: 500;
   font-size: 1.08rem;
   transition: color 0.2s;
 }
 .schor-navbar-premium .nav-link {
-  color: #222 !important;
+  color: var(--text-main) !important;
   font-weight: 500;
   font-size: 1.08rem;
   transition: color 0.2s, background 0.2s;
@@ -61,7 +165,7 @@ body {
 }
 .schor-navbar-premium .nav-link:hover {
   color: var(--primary) !important;
-  background: #f5f8fa;
+  background: var(--bg-alt);
 }
 .schor-navbar .btn-primary {
   background: var(--primary);
@@ -71,19 +175,19 @@ body {
 }
 .schor-navbar .btn-primary:hover {
   background: var(--secondary);
-  color: var(--dark);
+  color: #fff;
 }
 .btn-gradient {
   background: var(--gradient-btn);
   color: #fff;
   border: none;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(10,110,189,0.10);
+  box-shadow: 0 2px 8px rgba(255,127,0,0.10);
   transition: background 0.2s, color 0.2s;
 }
 .btn-gradient:hover {
-  background: var(--secondary);
-  color: var(--dark);
+  background: var(--primary);
+  color: #fff;
 }
 .btn-outline-primary {
   border-radius: 2rem;
@@ -91,8 +195,8 @@ body {
   font-weight: 500;
 }
 .btn-outline-gradient {
-  border: 2px solid #0a6ebd;
-  color: #0a6ebd;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   background: #fff;
   font-weight: 500;
   transition: background 0.2s, color 0.2s;
@@ -154,20 +258,20 @@ body {
   transform: translateY(-4px) scale(1.02);
 }
 .schor-section-premium {
-  background: #f8fafd;
+  background: var(--bg-main);
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
 .schor-card-premium {
-  background: rgba(255,255,255,0.95);
+  background: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 4px 24px rgba(10,35,66,0.10);
-  border: none;
+  box-shadow: 0 4px 24px rgba(0,47,108,0.10);
+  border: 1.5px solid var(--border);
   transition: box-shadow 0.2s, transform 0.2s;
   backdrop-filter: blur(2px);
 }
 .schor-card-premium:hover {
-  box-shadow: 0 12px 32px rgba(10,35,66,0.16);
+  box-shadow: 0 12px 32px rgba(255,127,0,0.16);
   transform: translateY(-6px) scale(1.03);
 }
 .schor-section-premium .section-title {
@@ -352,7 +456,7 @@ footer a:hover {
   position: absolute;
   top: 18px;
   left: 18px;
-  background: var(--gradient-btn);
+  background: var(--primary);
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;

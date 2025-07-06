@@ -23,13 +23,20 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center gap-2 mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="collecte.html">Collecte</a></li>
+
+
+          <li class="nav-item"><a class="nav-link" href="collecte.html">Collecte</a></li>
           <li class="nav-item"><a class="nav-link" href="analyse.html">Analyse</a></li>
           <li class="nav-item"><a class="nav-link" href="conseils.html">Conseils</a></li>
           <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
           <li class="nav-item"><a class="nav-link" href="formation.html">Formation</a></li>
-          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+
+          
+          <li class="nav-item"><a class="nav-link" href="user/dashboard.html">Utilisateur</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin/dashboard.html">Admin</a></li>
+          <li class="nav-item"><a class="btn btn-gradient px-4 py-2 rounded-pill shadow-sm schor-btn-nav" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -37,43 +44,141 @@
   <!-- Main Content -->
   <section class="py-5 schor-section-premium">
     <div class="container">
-      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Collecte de données</h1>
-      <p class="lead mb-4">SCHOR relève le défi de l’accessibilité aux données sûres et accessibles à tous les niveaux, tout en appuyant la montée en compétences des acteurs locaux.</p>
-      <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Accessibilité & Sécurité</h5>
-            <p>Des données accessibles à tous les niveaux, dans le respect de la sécurité, de l’éthique et de la confidentialité.</p>
-          </div>
+      <!-- Section Comment utiliser cet outil -->
+      <div class="card schor-card-premium p-4 mb-4">
+        <h5 class="fw-bold mb-3">Comment utiliser cet outil&nbsp;?</h5>
+        <ol class="mb-2">
+          <li>Remplissez le formulaire ci-dessous avec vos informations et sélectionnez un ou plusieurs fichiers de données (Excel ou CSV).</li>
+          <li>Les données seront affichées instantanément dans le tableau après sélection du fichier.</li>
+          <li>Vous pouvez exporter les données affichées en cliquant sur <b>Exporter en CSV</b>.</li>
+        </ol>
+        <div class="d-flex gap-2 mt-2">
+          <a href="#collecteForm" class="btn btn-gradient rounded-pill px-4">Commencer la collecte</a>
+          <a href="#autresMoyens" class="btn btn-outline-primary rounded-pill px-4">Découvrir d'autres outils</a>
         </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Outils digitaux & protocoles rigoureux</h5>
-            <p>Utilisation de plateformes numériques, formulaires en ligne, applications mobiles pour la collecte sur le terrain, respectant les standards scientifiques, anonymisation, consentement éclairé.</p>
+      </div>
+      <!-- Section Autres moyens de collecte -->
+      <div class="card schor-card-premium p-4 mb-4" id="autresMoyens">
+        <h5 class="fw-bold mb-3">Autres moyens de collecte de données</h5>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="border rounded-3 p-3 h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="assets/icon-data.svg" width="28" alt="KoboCollect">
+                <span class="fw-semibold">KoboCollect</span>
+              </div>
+              <div class="small mb-2">Application mobile et web pour la collecte de données sur le terrain, très utilisée dans l’humanitaire.</div>
+              <a href="https://www.kobotoolbox.org/" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Découvrir KoboCollect</a>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Encadrement & Consultance</h5>
-            <p>Consultance scientifique pour l’encadrement des projets de collecte, encodage et traitement des données auprès des organisations, institutions publiques et privées.</p>
+          <div class="col-md-4">
+            <div class="border rounded-3 p-3 h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="assets/icon-appui.svg" width="28" alt="Google Forms">
+                <span class="fw-semibold">Google Forms</span>
+              </div>
+              <div class="small mb-2">Outil gratuit de Google pour créer des formulaires en ligne et collecter des réponses facilement.</div>
+              <a href="https://forms.google.com/" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Accéder à Google Forms</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="border rounded-3 p-3 h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="assets/icon-innovation.svg" width="28" alt="ODK Collect">
+                <span class="fw-semibold">ODK Collect</span>
+              </div>
+              <div class="small mb-2">Open Data Kit (ODK) : solution open source pour la collecte mobile, adaptée aux contextes variés.</div>
+              <a href="https://getodk.org/" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Découvrir ODK</a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="alert alert-info rounded-4 shadow-sm d-flex align-items-center gap-2 mb-4">
-        <img src="assets/icon-info.svg" width="28" alt="Info">
-        <div>Appui à la prise de décision basée sur les données dans le contexte humanitaire et développement durable.</div>
+      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Outil de collecte et d'affichage de données</h1>
+      <p class="lead mb-4">Utilisez cet outil pour collecter, visualiser et explorer des données. Importez vos fichiers Excel/CSV, visualisez les données instantanément et découvrez des conseils pour une collecte efficace.</p>
+
+      <!-- Formulaire de collecte de données -->
+      <div class="card schor-card-premium p-4 mb-4">
+        <h5 class="fw-bold mb-3">Formulaire de collecte de données</h5>
+        <form id="collecteForm" class="row g-3">
+          <div class="col-md-4">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" required>
+          </div>
+          <div class="col-md-4">
+            <label for="age" class="form-label">Âge</label>
+            <input type="number" class="form-control" id="age" name="age" min="0" max="120" required>
+          </div>
+          <div class="col-md-4">
+            <label for="organisation" class="form-label">Organisation</label>
+            <input type="text" class="form-control" id="organisation" name="organisation">
+          </div>
+          <div class="col-md-4">
+            <label for="localisation" class="form-label">Localisation</label>
+            <input type="text" class="form-control" id="localisation" name="localisation">
+          </div>
+          <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="col-md-4">
+            <label for="typedonnee" class="form-label">Type de données</label>
+            <select class="form-select" id="typedonnee" name="typedonnee" required>
+              <option value="">Choisir...</option>
+              <option>Enquête terrain</option>
+              <option>Statistiques publiques</option>
+              <option>Données sanitaires</option>
+              <option>Données humanitaires</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <label for="fichier" class="form-label">Fichiers de données (Excel/CSV, plusieurs possibles)</label>
+            <input type="file" class="form-control" id="fichier" name="fichier" accept=".xlsx,.xls,.csv" multiple required>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-gradient rounded-pill px-4">Soumettre</button>
+          </div>
+        </form>
+        <div id="formMessage" class="mt-3"></div>
       </div>
+
+      <!-- Affichage des données du fichier -->
+      <div class="card schor-card-premium p-4 mb-4" id="dataDisplayCard" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">Aperçu des données importées</h5>
+          <button class="btn btn-outline-primary btn-sm rounded-pill" id="exportBtn" style="display:none;">
+            <i class="bi bi-download"></i> Exporter en CSV
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" id="dataTable"></table>
+        </div>
+      </div>
+
+      <!-- Conseils et pistes de solution -->
       <div class="row g-4 mb-4">
         <div class="col-md-6">
           <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Montée en compétences</h5>
-            <p>Appui à la formation et à la sensibilisation des acteurs locaux à la culture data et à l’importance de la donnée pour le développement durable.</p>
+            <h5 class="fw-bold mb-2">Bonnes pratiques pour la collecte de données</h5>
+            <ul class="mb-0">
+              <li>Définir clairement les objectifs de la collecte.</li>
+              <li>Utiliser des outils numériques fiables (formulaires, applications mobiles).</li>
+              <li>Respecter l’anonymat et le consentement éclairé des participants.</li>
+              <li>Vérifier la qualité et la cohérence des données collectées.</li>
+              <li>Documenter le protocole de collecte.</li>
+            </ul>
           </div>
         </div>
         <div class="col-md-6">
           <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Appui aux universités</h5>
-            <p>Accompagnement des universités et instituts supérieurs dans la recherche scientifique pour le développement.</p>
+            <h5 class="fw-bold mb-2">Pistes de solution SCHOR</h5>
+            <ul class="mb-0">
+              <li>Accompagnement à la digitalisation de la collecte.</li>
+              <li>Formation des équipes locales à la culture data.</li>
+              <li>Développement de protocoles adaptés au contexte.</li>
+              <li>Appui à l’analyse et à la visualisation des données.</li>
+              <li>Consultance pour la sécurisation et la valorisation des données.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -133,6 +238,91 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SheetJS pour lecture Excel côté client -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    // Gestion du formulaire et affichage des données Excel
+    const collecteForm = document.getElementById('collecteForm');
+    const fichierInput = document.getElementById('fichier');
+    const dataDisplayCard = document.getElementById('dataDisplayCard');
+    const dataTable = document.getElementById('dataTable');
+    const formMessage = document.getElementById('formMessage');
+    const exportBtn = document.getElementById('exportBtn');
+    let lastData = null;
+
+    collecteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      formMessage.innerHTML = '<span class="text-success">Formulaire soumis avec succès (simulation côté client).</span>';
+    });
+
+    fichierInput.addEventListener('change', function(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+      let allData = [];
+      let filesProcessed = 0;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          let data = e.target.result;
+          let workbook;
+          if (file.name.endsWith('.csv')) {
+            workbook = XLSX.read(data, {type: 'binary', codepage:65001});
+          } else {
+            workbook = XLSX.read(data, {type: 'array'});
+          }
+          const firstSheet = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[firstSheet];
+          const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+          if (json.length > 0) {
+            if (allData.length === 0) {
+              allData = json;
+            } else {
+              // Ajoute les lignes sans répéter l'en-tête
+              allData = allData.concat(json.slice(1));
+            }
+          }
+          filesProcessed++;
+          if (filesProcessed === files.length) {
+            renderTable(allData);
+            lastData = allData;
+          }
+        };
+        if (file.name.endsWith('.csv')) {
+          reader.readAsBinaryString(file);
+        } else {
+          reader.readAsArrayBuffer(file);
+        }
+      });
+    });
+
+    function renderTable(data) {
+      if (!data || !data.length) {
+        dataDisplayCard.style.display = 'none';
+        exportBtn.style.display = 'none';
+        return;
+      }
+      let html = '<thead><tr>';
+      data[0].forEach(cell => html += `<th>${cell}</th>`);
+      html += '</tr></thead><tbody>';
+      for (let i = 1; i < data.length; i++) {
+        html += '<tr>';
+        data[i].forEach(cell => html += `<td>${cell ?? ''}</td>`);
+        html += '</tr>';
+      }
+      html += '</tbody>';
+      dataTable.innerHTML = html;
+      dataDisplayCard.style.display = '';
+      exportBtn.style.display = '';
+    }
+
+    exportBtn.addEventListener('click', function() {
+      if (!lastData || !lastData.length) return;
+      const ws = XLSX.utils.aoa_to_sheet(lastData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Données');
+      XLSX.writeFile(wb, 'donnees_exportees.csv', {bookType:'csv'});
+    });
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </body>
 </html>

@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <style>
+    /* Style premium pour les graphiques Chart.js */
+    .schor-premium-chart {
+      background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px 0 rgba(79,140,255,0.10), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+      border: 2px solid #4f8cff22;
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .schor-premium-chart-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #4f8cff;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    .schor-premium-chart-legend {
+      font-size: 0.95rem;
+      color: #444;
+      margin-top: 0.5rem;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Analyse de données - SCHOR. Analyse avancée, visualisation et recommandations scientifiques.">
@@ -23,13 +46,20 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center gap-2 mb-2 mb-lg-0">
+
+
           <li class="nav-item"><a class="nav-link" href="collecte.html">Collecte</a></li>
-          <li class="nav-item"><a class="nav-link active" href="analyse.html">Analyse</a></li>
+          <li class="nav-item"><a class="nav-link" href="analyse.html">Analyse</a></li>
           <li class="nav-item"><a class="nav-link" href="conseils.html">Conseils</a></li>
           <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
           <li class="nav-item"><a class="nav-link" href="formation.html">Formation</a></li>
-          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+
+          
+          <li class="nav-item"><a class="nav-link" href="user/dashboard.html">Utilisateur</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin/dashboard.html">Admin</a></li>
+          <li class="nav-item"><a class="btn btn-gradient px-4 py-2 rounded-pill shadow-sm schor-btn-nav" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -37,43 +67,72 @@
   <!-- Main Content -->
   <section class="py-5 schor-section-premium">
     <div class="container">
-      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Analyse de données</h1>
-      <p class="lead mb-4">Appui à la prise de décision basée sur les données dans le contexte humanitaire et pour le développement durable.</p>
-      <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Analyse avancée & IA</h5>
-            <p>Utilisation d’algorithmes, d’intelligence artificielle et de visualisations interactives pour extraire des insights fiables et actionnables.</p>
+      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Outil d’analyse et d’interprétation de données</h1>
+      <p class="lead mb-4">Importez vos fichiers Excel/CSV pour explorer, visualiser et interpréter vos données. L’outil propose des graphiques automatiques, des interprétations et des pistes de solutions adaptées à vos besoins (épidémiologie, économie, politique, etc.).</p>
+
+      <!-- CTA et exemples -->
+      <div class="mb-4 d-flex flex-wrap gap-2">
+        <a href="#analyseForm" class="btn btn-gradient rounded-pill px-4">Commencer l’analyse</a>
+        <button class="btn btn-outline-primary rounded-pill px-4" onclick="loadSample('epidemiologie')">Exemple épidémiologique</button>
+        <button class="btn btn-outline-primary rounded-pill px-4" onclick="loadSample('economie')">Exemple économique</button>
+        <button class="btn btn-outline-primary rounded-pill px-4" onclick="loadSample('politique')">Exemple politique</button>
+      </div>
+
+      <!-- Formulaire d’upload -->
+      <div class="card schor-card-premium p-4 mb-4">
+        <h5 class="fw-bold mb-3">Importer vos données</h5>
+        <form id="analyseForm" class="row g-3">
+          <div class="col-md-8">
+            <input type="file" class="form-control" id="fichier" name="fichier" accept=".xlsx,.xls,.csv" multiple required>
           </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-gradient rounded-pill px-4 w-100">Analyser</button>
+          </div>
+        </form>
+        <div id="formMessage" class="mt-3"></div>
+      </div>
+
+      <!-- Affichage des données -->
+      <div class="card schor-card-premium p-4 mb-4" id="dataDisplayCard" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">Aperçu des données importées</h5>
+          <button class="btn btn-outline-primary btn-sm rounded-pill" id="exportBtn" style="display:none;">
+            <i class="bi bi-download"></i> Exporter en CSV
+          </button>
         </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Consultance scientifique</h5>
-            <p>Fourniture de services d’analyse et de recommandations personnalisées pour les organisations, ONG, institutions publiques et privées.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Valorisation des résultats</h5>
-            <p>Appui à la publication de rapports et articles scientifiques pour valoriser la recherche et l’innovation.</p>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" id="dataTable"></table>
         </div>
       </div>
-      <div class="alert alert-info rounded-4 shadow-sm d-flex align-items-center gap-2 mb-4">
-        <img src="assets/icon-info.svg" width="28" alt="Info">
-        <div>Favoriser la prise de décision éclairée et l’impact positif sur la société grâce à la data. Appui aux universités et instituts supérieurs en matière de recherche scientifique pour le développement.</div>
+
+      <!-- Graphiques et interprétations -->
+      <div id="chartsSection" style="display:none;">
+        <div class="row g-4 mb-4" id="chartsContainer"></div>
       </div>
+
+      <!-- Conseils et pistes de solution -->
       <div class="row g-4 mb-4">
         <div class="col-md-6">
           <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Culture data</h5>
-            <p>Former et sensibiliser les acteurs à la culture data et à son importance pour un développement plus durable et plus humanitaire.</p>
+            <h5 class="fw-bold mb-2">Bonnes pratiques pour l’analyse de données</h5>
+            <ul class="mb-0">
+              <li>Vérifier la qualité et la cohérence des données avant toute analyse.</li>
+              <li>Utiliser des visualisations adaptées pour chaque type de variable.</li>
+              <li>Interpréter les résultats en tenant compte du contexte.</li>
+              <li>Documenter les méthodes et hypothèses utilisées.</li>
+              <li>Collaborer avec des experts thématiques si besoin.</li>
+            </ul>
           </div>
         </div>
         <div class="col-md-6">
           <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Appui à la décision</h5>
-            <p>Accompagnement des décideurs pour intégrer la donnée dans leurs stratégies et politiques.</p>
+            <h5 class="fw-bold mb-2">Pistes de solution SCHOR</h5>
+            <ul class="mb-0">
+              <li>Appui à l’analyse statistique avancée et à la visualisation.</li>
+              <li>Développement de tableaux de bord interactifs.</li>
+              <li>Formation à l’interprétation des résultats pour la prise de décision.</li>
+              <li>Consultance pour la valorisation des données (rapports, publications).</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -134,6 +193,299 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SheetJS pour lecture Excel côté client -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- Chart.js pour les graphiques -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    // Variables globales
+    let lastData = null;
+    let lastHeaders = null;
+    let chartInstances = [];
+
+    // Exemples de jeux de données (épidémiologie, économie, politique)
+    const samples = {
+      epidemiologie: [
+        ['Région', 'Cas', 'Guérisons', 'Décès'],
+        ['Dakar', 1200, 1100, 50],
+        ['Thiès', 800, 780, 15],
+        ['Saint-Louis', 400, 390, 5],
+        ['Ziguinchor', 200, 180, 2]
+      ],
+      economie: [
+        ['Secteur', 'PIB (Mds €)', 'Emplois (milliers)'],
+        ['Agriculture', 12, 800],
+        ['Industrie', 25, 400],
+        ['Services', 40, 1200]
+      ],
+      politique: [
+        ['Parti', 'Votes', 'Sièges'],
+        ['Parti A', 500000, 80],
+        ['Parti B', 350000, 50],
+        ['Parti C', 150000, 20]
+      ]
+    };
+
+    function loadSample(type) {
+      if (!samples[type]) return;
+      renderTable(samples[type]);
+      lastData = samples[type];
+      lastHeaders = samples[type][0];
+      analyseAndDrawCharts(samples[type]);
+    }
+
+    // Gestion du formulaire et affichage des données Excel
+    const analyseForm = document.getElementById('analyseForm');
+    const fichierInput = document.getElementById('fichier');
+    const dataDisplayCard = document.getElementById('dataDisplayCard');
+    const dataTable = document.getElementById('dataTable');
+    const formMessage = document.getElementById('formMessage');
+    const exportBtn = document.getElementById('exportBtn');
+    const chartsSection = document.getElementById('chartsSection');
+    const chartsContainer = document.getElementById('chartsContainer');
+
+    analyseForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const files = Array.from(fichierInput.files);
+      if (!files.length) return;
+      let allData = [];
+      let filesProcessed = 0;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          let data = e.target.result;
+          let workbook;
+          if (file.name.endsWith('.csv')) {
+            workbook = XLSX.read(data, {type: 'binary', codepage:65001});
+          } else {
+            workbook = XLSX.read(data, {type: 'array'});
+          }
+          const firstSheet = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[firstSheet];
+          const json = XLSX.utils.sheet_to_json(sheet, {header:1});
+          if (json.length > 0) {
+            if (allData.length === 0) {
+              allData = json;
+            } else {
+              allData = allData.concat(json.slice(1));
+            }
+          }
+          filesProcessed++;
+          if (filesProcessed === files.length) {
+            renderTable(allData);
+            lastData = allData;
+            lastHeaders = allData[0];
+            analyseAndDrawCharts(allData);
+          }
+        };
+        if (file.name.endsWith('.csv')) {
+          reader.readAsBinaryString(file);
+        } else {
+          reader.readAsArrayBuffer(file);
+        }
+      });
+    });
+
+    function renderTable(data) {
+      if (!data || !data.length) {
+        dataDisplayCard.style.display = 'none';
+        exportBtn.style.display = 'none';
+        return;
+      }
+      let html = '<thead><tr>';
+      data[0].forEach(cell => html += `<th>${cell}</th>`);
+      html += '</tr></thead><tbody>';
+      for (let i = 1; i < data.length; i++) {
+        html += '<tr>';
+        data[i].forEach(cell => html += `<td>${cell ?? ''}</td>`);
+        html += '</tr>';
+      }
+      html += '</tbody>';
+      dataTable.innerHTML = html;
+      dataDisplayCard.style.display = '';
+      exportBtn.style.display = '';
+    }
+
+    exportBtn.addEventListener('click', function() {
+      if (!lastData || !lastData.length) return;
+      const ws = XLSX.utils.aoa_to_sheet(lastData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Données');
+      XLSX.writeFile(wb, 'donnees_exportees.csv', {bookType:'csv'});
+    });
+
+    // Analyse et génération de graphiques/interprétations
+    function analyseAndDrawCharts(data) {
+      if (!data || data.length < 2) {
+        chartsSection.style.display = 'none';
+        return;
+      }
+      // Nettoyage des anciens graphiques
+      chartInstances.forEach(c => c.destroy());
+      chartInstances = [];
+      chartsContainer.innerHTML = '';
+
+      // Détection des colonnes numériques et catégorielles
+      const headers = data[0];
+      const rows = data.slice(1);
+      const numCols = headers.map((h, idx) => {
+        const isNum = rows.every(r => !isNaN(parseFloat(r[idx])) && r[idx] !== '' && r[idx] !== null && r[idx] !== undefined);
+        return isNum;
+      });
+
+      // Pour chaque colonne numérique, histogramme
+      headers.forEach((h, idx) => {
+        if (numCols[idx]) {
+          // Histogramme premium
+          const values = rows.map(r => parseFloat(r[idx]));
+          const ctxId = 'chart_' + idx;
+          const card = document.createElement('div');
+          card.className = 'col-md-6';
+          card.innerHTML = `<div class=\"schor-premium-chart\"><div class=\"schor-premium-chart-title\">Distribution de ${h}</div><canvas id=\"${ctxId}\" height=\"180\"></canvas><div class=\"schor-premium-chart-legend\" id=\"legend_${ctxId}\"></div><div class=\"mt-2 small text-secondary\" id=\"interp_${ctxId}\"></div></div>`;
+          chartsContainer.appendChild(card);
+          const ctx = document.getElementById(ctxId).getContext('2d');
+          const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: rows.map(r => r[0]),
+              datasets: [{ label: h, data: values, backgroundColor: 'rgba(79,140,255,0.7)', borderColor: '#4f8cff', borderWidth: 2, borderRadius: 8 }]
+            },
+            options: {
+              plugins: {
+                legend: { display: true, labels: { color: '#4f8cff', font: { weight: 'bold' } } },
+                title: { display: true, text: `Histogramme de ${h}`, color: '#4f8cff', font: { size: 16, weight: 'bold' } }
+              },
+              scales: {
+                x: { grid: { color: '#e0e7ff' }, ticks: { color: '#4f8cff' } },
+                y: { grid: { color: '#e0e7ff' }, ticks: { color: '#4f8cff' } }
+              }
+            }
+          });
+          chartInstances.push(chart);
+          // Interprétation avancée
+          const min = Math.min(...values);
+          const max = Math.max(...values);
+          const avg = (values.reduce((a,b) => a+b,0)/values.length).toFixed(2);
+          // Calcul de tendance
+          let trend = '';
+          if (values.length > 2) {
+            const diff = values[values.length-1] - values[0];
+            if (diff > 0) trend = 'On observe une tendance à la hausse.';
+            else if (diff < 0) trend = 'On observe une tendance à la baisse.';
+            else trend = 'La tendance est stable.';
+          }
+          // Calcul de dispersion
+          const variance = values.reduce((a,b) => a + Math.pow(b-avg,2),0)/values.length;
+          const stddev = Math.sqrt(variance).toFixed(2);
+          let interp = `Min : <b>${min}</b>, Max : <b>${max}</b>, Moyenne : <b>${avg}</b>, Écart-type : <b>${stddev}</b>. ${trend}`;
+          if (h.toLowerCase().includes('décès') || h.toLowerCase().includes('cas')) interp += ' Indicateur clé pour la santé publique.';
+          if (h.toLowerCase().includes('pib')) interp += ' Indicateur clé de la santé économique.';
+          if (h.toLowerCase().includes('votes') || h.toLowerCase().includes('sièges')) interp += ' Représente la force politique des partis.';
+          document.getElementById('interp_'+ctxId).innerHTML = interp;
+          document.getElementById('legend_'+ctxId).innerHTML = 'Chaque barre représente la valeur de <b>'+h+'</b> pour chaque catégorie.';
+        }
+      });
+
+      // Si deux colonnes numériques, nuage de points
+      const numIdx = headers.map((h, idx) => numCols[idx] ? idx : -1).filter(idx => idx !== -1);
+      if (numIdx.length >= 2) {
+        const xIdx = numIdx[0], yIdx = numIdx[1];
+        const ctxId = 'scatter_xy';
+        const card = document.createElement('div');
+        card.className = 'col-md-6';
+        card.innerHTML = `<div class=\"schor-premium-chart\"><div class=\"schor-premium-chart-title\">Corrélation entre ${headers[xIdx]} et ${headers[yIdx]}</div><canvas id=\"${ctxId}\" height=\"180\"></canvas><div class=\"schor-premium-chart-legend\" id=\"legend_${ctxId}\"></div><div class=\"mt-2 small text-secondary\" id=\"interp_${ctxId}\"></div></div>`;
+        chartsContainer.appendChild(card);
+        const ctx = document.getElementById(ctxId).getContext('2d');
+        const chart = new Chart(ctx, {
+          type: 'scatter',
+          data: {
+            datasets: [{
+              label: `${headers[xIdx]} vs ${headers[yIdx]}`,
+              data: rows.map(r => ({x: parseFloat(r[xIdx]), y: parseFloat(r[yIdx])})),
+              backgroundColor: '#ffb14f',
+              borderColor: '#ffb14f',
+              pointRadius: 6,
+              pointHoverRadius: 8
+            }]
+          },
+          options: {
+            plugins: {
+              legend: { display: true, labels: { color: '#ffb14f', font: { weight: 'bold' } } },
+              title: { display: true, text: `Nuage de points : ${headers[xIdx]} vs ${headers[yIdx]}`, color: '#ffb14f', font: { size: 16, weight: 'bold' } }
+            },
+            scales: {
+              x: { title: { display: true, text: headers[xIdx], color: '#ffb14f', font: { weight: 'bold' } }, grid: { color: '#fff7e6' }, ticks: { color: '#ffb14f' } },
+              y: { title: { display: true, text: headers[yIdx], color: '#ffb14f', font: { weight: 'bold' } }, grid: { color: '#fff7e6' }, ticks: { color: '#ffb14f' } }
+            }
+          }
+        });
+        chartInstances.push(chart);
+        // Calcul de corrélation simple (Pearson)
+        const xVals = rows.map(r => parseFloat(r[xIdx]));
+        const yVals = rows.map(r => parseFloat(r[yIdx]));
+        const n = xVals.length;
+        const meanX = xVals.reduce((a,b)=>a+b,0)/n;
+        const meanY = yVals.reduce((a,b)=>a+b,0)/n;
+        const cov = xVals.map((x,i)=> (x-meanX)*(yVals[i]-meanY)).reduce((a,b)=>a+b,0)/n;
+        const stdX = Math.sqrt(xVals.map(x=>Math.pow(x-meanX,2)).reduce((a,b)=>a+b,0)/n);
+        const stdY = Math.sqrt(yVals.map(y=>Math.pow(y-meanY,2)).reduce((a,b)=>a+b,0)/n);
+        const corr = (stdX && stdY) ? (cov/(stdX*stdY)).toFixed(2) : 'N/A';
+        let interp = `Corrélation de Pearson : <b>${corr}</b>. `;
+        if (corr !== 'N/A') {
+          if (corr > 0.7) interp += 'Corrélation forte et positive.';
+          else if (corr < -0.7) interp += 'Corrélation forte et négative.';
+          else if (corr > 0.3) interp += 'Corrélation modérée et positive.';
+          else if (corr < -0.3) interp += 'Corrélation modérée et négative.';
+          else interp += 'Corrélation faible ou nulle.';
+        }
+        document.getElementById('interp_'+ctxId).innerHTML = interp;
+        document.getElementById('legend_'+ctxId).innerHTML = `Chaque point représente une observation (${headers[xIdx]}, ${headers[yIdx]}).`;
+      }
+
+      // Si une colonne catégorielle + une numérique, camembert
+      const catIdx = headers.map((h, idx) => !numCols[idx] ? idx : -1).filter(idx => idx !== -1);
+      if (catIdx.length && numIdx.length) {
+        const cIdx = catIdx[0], nIdx = numIdx[0];
+        // Regrouper les valeurs numériques par catégorie
+        const catMap = {};
+        rows.forEach(r => {
+          const cat = r[cIdx];
+          const val = parseFloat(r[nIdx]);
+          if (!catMap[cat]) catMap[cat] = 0;
+          catMap[cat] += isNaN(val) ? 0 : val;
+        });
+        const ctxId = 'pie_'+cIdx+'_'+nIdx;
+        const card = document.createElement('div');
+        card.className = 'col-md-6';
+        card.innerHTML = `<div class=\"schor-premium-chart\"><div class=\"schor-premium-chart-title\">Répartition de ${headers[nIdx]} par ${headers[cIdx]}</div><canvas id=\"${ctxId}\" height=\"180\"></canvas><div class=\"schor-premium-chart-legend\" id=\"legend_${ctxId}\"></div><div class=\"mt-2 small text-secondary\" id=\"interp_${ctxId}\"></div></div>`;
+        chartsContainer.appendChild(card);
+        const ctx = document.getElementById(ctxId).getContext('2d');
+        const chart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: Object.keys(catMap),
+            datasets: [{ data: Object.values(catMap), backgroundColor: ['#4f8cff','#ffb14f','#4fd6b0','#ff4f81','#b14fff','#ffd24f'] }]
+          },
+          options: {
+            plugins: {
+              legend: { display: true, labels: { color: '#4f8cff', font: { weight: 'bold' } } },
+              title: { display: true, text: `Camembert : ${headers[nIdx]} par ${headers[cIdx]}`, color: '#4f8cff', font: { size: 16, weight: 'bold' } }
+            }
+          }
+        });
+        chartInstances.push(chart);
+        // Interprétation avancée
+        const total = Object.values(catMap).reduce((a,b)=>a+b,0);
+        let dominant = Object.entries(catMap).sort((a,b)=>b[1]-a[1])[0];
+        let interp = `La catégorie dominante est <b>${dominant[0]}</b> (${dominant[1]}), représentant ${(100*dominant[1]/total).toFixed(1)}% du total.`;
+        if (Object.keys(catMap).length > 1) interp += ` Les autres catégories sont : ` + Object.entries(catMap).slice(1).map(([k,v])=>`${k} (${v})`).join(', ') + '.';
+        document.getElementById('interp_'+ctxId).innerHTML = interp;
+        document.getElementById('legend_'+ctxId).innerHTML = `Chaque part représente la contribution de <b>${headers[cIdx]}</b> à <b>${headers[nIdx]}</b>.`;
+      }
+
+      chartsSection.style.display = '';
+    }
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </body>
 </html>

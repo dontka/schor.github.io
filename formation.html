@@ -22,63 +22,209 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-center gap-2 mb-2 mb-lg-0">
+
+
           <li class="nav-item"><a class="nav-link" href="collecte.html">Collecte</a></li>
           <li class="nav-item"><a class="nav-link" href="analyse.html">Analyse</a></li>
           <li class="nav-item"><a class="nav-link" href="conseils.html">Conseils</a></li>
           <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-          <li class="nav-item"><a class="nav-link active" href="formation.html">Formation</a></li>
-          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="formation.html">Formation</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+
+          
+          <li class="nav-item"><a class="nav-link" href="user/dashboard.html">Utilisateur</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin/dashboard.html">Admin</a></li>
+          <li class="nav-item"><a class="btn btn-gradient px-4 py-2 rounded-pill shadow-sm schor-btn-nav" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- Main Content -->
-  <section class="py-5 schor-section-premium">
+  <section class="py-5 schor-section-premium bg-light">
     <div class="container">
-      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Formation & Ateliers</h1>
-      <p class="lead mb-4">SCHOR accompagne la montée en compétences des acteurs locaux, ONG, chercheurs, étudiants et institutions à travers des formations, ateliers et webinaires axés sur la culture data, la recherche scientifique et l’innovation au service de l’humanitaire.</p>
-      <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Culture data & développement durable</h5>
-            <p>Formations à la culture data, à l’analyse et à la valorisation des données pour un développement plus durable et plus humanitaire.</p>
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-7">
+          <h1 class="display-3 fw-bold schor-gradient-text mb-3">Formations en ligne<br><span class="text-primary">Data Science</span></h1>
+          <p class="lead mb-4">Développez vos compétences en data science, IA, analyse de données et machine learning avec nos parcours premium, certifiants et 100% en ligne. Rejoignez une communauté d’apprenants et accédez à des contenus exclusifs, ateliers interactifs et accompagnement personnalisé.</p>
+          <a href="#catalogue" class="btn btn-gradient btn-lg rounded-pill px-5">Découvrir les formations</a>
+        </div>
+        <div class="col-lg-5 text-center">
+          <img src="assets/hero-illustration.svg" alt="Data Science" class="img-fluid" style="max-height:320px;">
+        </div>
+      </div>
+
+      <!-- Avantages -->
+      <div class="row text-center mb-5">
+        <div class="col-md-3 mb-3">
+          <div class="card border-0 shadow h-100 p-4">
+            <img src="assets/icon-analyse.svg" width="48" class="mb-2" alt="Expertise">
+            <h6 class="fw-bold">Expertise reconnue</h6>
+            <p class="small">Formateurs experts, chercheurs et professionnels du secteur.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Appui aux universités</h5>
-            <p>Accompagnement des universités et instituts supérieurs dans la formation à la recherche scientifique et à la publication.</p>
+        <div class="col-md-3 mb-3">
+          <div class="card border-0 shadow h-100 p-4">
+            <img src="assets/icon-formation.svg" width="48" class="mb-2" alt="Certificat">
+            <h6 class="fw-bold">Certificats premium</h6>
+            <p class="small">Obtenez un certificat reconnu à l’issue de chaque parcours.</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Montée en compétences</h5>
-            <p>Développement des compétences des acteurs locaux, ONG, PME et étudiants à travers des parcours certifiants et des ateliers pratiques.</p>
+        <div class="col-md-3 mb-3">
+          <div class="card border-0 shadow h-100 p-4">
+            <img src="assets/icon-support.svg" width="48" class="mb-2" alt="Support">
+            <h6 class="fw-bold">Support personnalisé</h6>
+            <p class="small">Coaching, forums, webinaires et accompagnement individuel.</p>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card border-0 shadow h-100 p-4">
+            <img src="assets/icon-innovation.svg" width="48" class="mb-2" alt="Innovation">
+            <h6 class="fw-bold">Plateforme innovante</h6>
+            <p class="small">Accès 24/7, contenus interactifs, projets pratiques et communauté active.</p>
           </div>
         </div>
       </div>
-      <div class="alert alert-info rounded-4 shadow-sm d-flex align-items-center gap-2 mb-4">
-        <img src="assets/icon-info.svg" width="28" alt="Info">
-        <div>Nos formations favorisent l’autonomie, l’innovation et la prise de décision basée sur les données dans le secteur humanitaire et scientifique.</div>
+
+      <!-- Catalogue de formations -->
+      <h2 id="catalogue" class="fw-bold mb-4 text-center">Catalogue de formations</h2>
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card schor-card-premium h-100 shadow-lg border-0">
+            <img src="assets/news1.jpg" class="card-img-top rounded-top" alt="Intro Data Science">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Introduction à la Data Science</h5>
+              <span class="badge bg-gradient-primary mb-2 align-self-start">Débutant</span>
+              <p class="mb-3">Découvrez les bases de la data science, Python, statistiques et visualisation de données. Idéal pour débuter.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-primary">49€</span>
+                <a href="#inscription" class="btn btn-gradient rounded-pill px-3">S’inscrire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card schor-card-premium h-100 shadow-lg border-0">
+            <img src="assets/news2.jpg" class="card-img-top rounded-top" alt="Machine Learning">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Machine Learning & IA</h5>
+              <span class="badge bg-gradient-success mb-2 align-self-start">Intermédiaire</span>
+              <p class="mb-3">Apprenez à concevoir, entraîner et déployer des modèles de machine learning et d’intelligence artificielle.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-success">79€</span>
+                <a href="#inscription" class="btn btn-gradient rounded-pill px-3">S’inscrire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card schor-card-premium h-100 shadow-lg border-0">
+            <img src="assets/news3.jpg" class="card-img-top rounded-top" alt="Data Visualisation">
+            <div class="card-body d-flex flex-column">
+              <h5 class="fw-bold mb-2">Data Visualisation avancée</h5>
+              <span class="badge bg-gradient-warning mb-2 align-self-start">Avancé</span>
+              <p class="mb-3">Maîtrisez les outils de visualisation, dashboards interactifs et storytelling par la donnée.</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-warning">69€</span>
+                <a href="#inscription" class="btn btn-gradient rounded-pill px-3">S’inscrire</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row g-4">
+
+      <!-- Comment ça marche -->
+      <div class="row align-items-center mb-5">
         <div class="col-md-6">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Formations certifiantes</h5>
-            <p>Parcours de formation reconnus, adaptés aux besoins des chercheurs, ONG, PME et étudiants.</p>
+          <h3 class="fw-bold mb-3">Comment ça marche ?</h3>
+          <ul class="list-unstyled lh-lg">
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Inscrivez-vous à la formation de votre choix</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Accédez à la plateforme et aux contenus premium</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Participez aux ateliers, webinaires et projets pratiques</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i>Obtenez votre certificat et rejoignez la communauté</li>
+          </ul>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="assets/graph-demo.svg" alt="Processus" class="img-fluid" style="max-height:220px;">
+        </div>
+      </div>
+
+      <!-- Témoignages -->
+      <h2 class="fw-bold mb-4 text-center">Ils ont suivi nos formations</h2>
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 p-4">
+            <div class="d-flex align-items-center mb-2">
+              <img src="assets/user1.jpg" class="rounded-circle me-3" width="48" alt="Utilisateur 1">
+              <div>
+                <span class="fw-bold">Fatou D.</span><br><span class="text-muted small">Chercheuse</span>
+              </div>
+            </div>
+            <p class="mb-0">“Une expérience enrichissante ! Les ateliers pratiques et le coaching m’ont permis de progresser rapidement.”</p>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Ateliers pratiques</h5>
-            <p>Sessions interactives, études de cas, exercices pratiques et accompagnement personnalisé.</p>
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 p-4">
+            <div class="d-flex align-items-center mb-2">
+              <img src="assets/user2.jpg" class="rounded-circle me-3" width="48" alt="Utilisateur 2">
+              <div>
+                <span class="fw-bold">Moussa K.</span><br><span class="text-muted small">Data Analyst</span>
+              </div>
+            </div>
+            <p class="mb-0">“Des contenus de qualité, une plateforme intuitive et un vrai suivi. Je recommande à tous ceux qui veulent se lancer en data science.”</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 p-4">
+            <div class="d-flex align-items-center mb-2">
+              <img src="assets/user3.jpg" class="rounded-circle me-3" width="48" alt="Utilisateur 3">
+              <div>
+                <span class="fw-bold">Awa S.</span><br><span class="text-muted small">Étudiante</span>
+              </div>
+            </div>
+            <p class="mb-0">“J’ai pu obtenir mon certificat et décrocher un stage grâce à la formation. Merci SCHOR !”</p>
           </div>
         </div>
       </div>
-      <div class="mt-5">
-        <a href="publications.html" class="btn btn-outline-gradient rounded-pill px-4 me-2">Voir les publications</a>
-        <a href="blogs.html" class="btn btn-gradient rounded-pill px-4">Voir les blogs</a>
+
+      <!-- FAQ -->
+      <h2 class="fw-bold mb-4 text-center">Questions fréquentes</h2>
+      <div class="accordion mb-5" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+              Les formations sont-elles accessibles à tous ?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Oui, nos formations sont conçues pour tous les niveaux, du débutant à l’expert.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              Comment obtenir le certificat ?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Il suffit de compléter la formation et de réussir les évaluations pour recevoir votre certificat premium.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              Puis-je suivre les cours à mon rythme ?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Oui, tous les contenus sont accessibles 24/7 et vous avancez à votre rythme.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appel à l'action -->
+      <div class="text-center mb-4">
+        <a href="#inscription" class="btn btn-gradient btn-lg rounded-pill px-5">Je m’inscris maintenant</a>
       </div>
     </div>
   </section>

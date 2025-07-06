@@ -1,6 +1,85 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <style>
+    /* Premium & moderne pour la base de publications */
+    .schor-search-bar {
+      background: linear-gradient(90deg, #f8fafc 60%, #e0e7ff 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px 0 rgba(79,140,255,0.08), 0 1.5px 6px 0 rgba(0,0,0,0.03);
+      border: 2px solid #4f8cff22;
+    }
+    .schor-pub-result {
+      background: #fff;
+      border-radius: 1.1rem;
+      box-shadow: 0 2px 12px 0 rgba(79,140,255,0.07);
+      border: 1.5px solid #e0e7ff;
+      margin-bottom: 1.2rem;
+      padding: 1.2rem 1.5rem 1rem 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .schor-pub-result:hover {
+      box-shadow: 0 6px 32px 0 rgba(79,140,255,0.13);
+      border-color: #4f8cff44;
+    }
+    .schor-pub-badge {
+      font-size: 0.95rem;
+      background: linear-gradient(90deg, #4f8cff 60%, #b14fff 100%);
+      color: #fff;
+      border-radius: 1rem;
+      padding: 0.2em 0.9em;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      box-shadow: 0 1px 4px 0 #4f8cff22;
+    }
+    .schor-pub-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2a2a4f;
+      margin-bottom: 0.2rem;
+    }
+    .schor-pub-authors {
+      color: #4f8cff;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+    .schor-pub-meta {
+      font-size: 0.93rem;
+      color: #888;
+      margin-bottom: 0.2rem;
+    }
+    .schor-pub-abstract {
+      color: #444;
+      font-size: 1.01rem;
+      margin-bottom: 0.5rem;
+    }
+    .schor-pub-link {
+      color: #fff;
+      background: linear-gradient(90deg, #4f8cff 60%, #b14fff 100%);
+      border: none;
+      border-radius: 1rem;
+      padding: 0.35em 1.2em;
+      font-weight: 600;
+      font-size: 0.98rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      box-shadow: 0 1px 4px 0 #4f8cff22;
+    }
+    .schor-pub-link:hover {
+      background: linear-gradient(90deg, #b14fff 60%, #4f8cff 100%);
+      color: #fff;
+    }
+    .schor-pub-stats-card {
+      background: linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px 0 rgba(79,140,255,0.08), 0 1.5px 6px 0 rgba(0,0,0,0.03);
+      border: 2px solid #4f8cff22;
+    }
+    @media (max-width: 600px) {
+      .schor-pub-result { padding: 1rem 0.7rem 0.7rem 0.7rem; }
+      .schor-pub-title { font-size: 1.01rem; }
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Publications scientifiques - SCHOR. Articles, rapports, études et valorisation des résultats.">
@@ -21,92 +100,189 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav align-items-center gap-2 mb-2 mb-lg-0">
+       <ul class="navbar-nav align-items-center gap-2 mb-2 mb-lg-0">
+
+
           <li class="nav-item"><a class="nav-link" href="collecte.html">Collecte</a></li>
           <li class="nav-item"><a class="nav-link" href="analyse.html">Analyse</a></li>
           <li class="nav-item"><a class="nav-link" href="conseils.html">Conseils</a></li>
-          <li class="nav-item"><a class="nav-link active" href="publications.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
           <li class="nav-item"><a class="nav-link" href="formation.html">Formation</a></li>
-          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+
+          
+          <li class="nav-item"><a class="nav-link" href="user/dashboard.html">Utilisateur</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin/dashboard.html">Admin</a></li>
+          <li class="nav-item"><a class="btn btn-gradient px-4 py-2 rounded-pill shadow-sm schor-btn-nav" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- Main Content -->
   <section class="py-5 schor-section-premium">
-    <div class="container">
-      <h1 class="display-4 fw-bold schor-gradient-text mb-4">Publications scientifiques</h1>
-      <p class="lead mb-4">SCHOR publie des rapports, articles et études pour valoriser la recherche scientifique, soutenir la prise de décision basée sur les données et promouvoir la culture data au service de l’humanitaire et du développement durable.</p>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SIDEBAR -->
+        <nav id="sidebarPublications" class="col-lg-3 mb-4 mb-lg-0" aria-label="Navigation secondaire publications">
+          <div class="card schor-card-premium p-4 sticky-top" style="top:90px">
+            <h5 class="fw-bold mb-3"><i class="bi bi-funnel me-2"></i>Navigation</h5>
+            <ul class="nav flex-column gap-2">
+              <li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('searchTitle').focus()"><i class="bi bi-search me-1"></i>Recherche</a></li>
+              <li class="nav-item"><a class="nav-link" href="#aboutBase"><i class="bi bi-info-circle me-1"></i>À propos de la base</a></li>
+              <li class="nav-item"><a class="nav-link" href="#publicationsList"><i class="bi bi-journals me-1"></i>Résultats</a></li>
+              <li class="nav-item"><a class="nav-link" href="conseils.html"><i class="bi bi-lightbulb me-1"></i>Conseils</a></li>
+              <li class="nav-item"><a class="nav-link" href="formation.html"><i class="bi bi-mortarboard me-1"></i>Formation</a></li>
+            </ul>
+            <hr>
+            <div class="small text-secondary">Astuce : Utilisez les filtres pour affiner votre recherche et cliquez sur une publication pour voir le détail.</div>
+          </div>
+        </nav>
+        <!-- MAIN CONTENT -->
+        <div class="col-lg-9">
+
+      <!-- Message d'accueil premium & CTA -->
+      <div class="alert alert-primary d-flex align-items-center gap-3 mb-4" role="alert" style="background: linear-gradient(90deg,#e0e7ff 60%,#f8fafc 100%); border-radius:1.2rem;">
+        <i class="bi bi-stars display-5 text-gradient" aria-hidden="true"></i>
+        <div>
+          <h1 class="display-5 fw-bold schor-gradient-text mb-1">Base de publications scientifiques SCHOR</h1>
+          <p class="lead mb-1">Explorez, filtrez et analysez des articles, rapports et ouvrages scientifiques. Profitez d'outils premium pour la recherche, la citation, la visualisation et l'export.</p>
+          <a href="#aboutBase" class="btn btn-gradient rounded-pill px-4 mt-2" aria-label="En savoir plus sur la base de publications"><i class="bi bi-info-circle me-2"></i>À propos de la base</a>
+        </div>
+      </div>
+
+      <!-- Barre de recherche et filtres -->
+      <div class="card schor-card-premium p-4 mb-4">
+        <form id="searchForm" class="row g-3 align-items-end schor-search-bar">
+          <div class="col-md-4">
+            <label for="searchTitle" class="form-label">Titre ou mot-clé</label>
+            <input type="text" class="form-control" id="searchTitle" placeholder="Ex: paludisme, innovation, santé...">
+          </div>
+          <div class="col-md-3">
+            <label for="searchAuthor" class="form-label">Auteur</label>
+            <input type="text" class="form-control" id="searchAuthor" placeholder="Nom de l'auteur">
+          </div>
+          <div class="col-md-2">
+            <label for="searchType" class="form-label">Type</label>
+            <select class="form-select" id="searchType">
+              <option value="">Tous</option>
+              <option>Article</option>
+              <option>Revue</option>
+              <option>Ouvrage</option>
+              <option>Périodique</option>
+              <option>Rapport</option>
+              <option>Journal</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="searchYear" class="form-label">Année</label>
+            <input type="number" class="form-control" id="searchYear" min="1900" max="2100" placeholder="2025">
+          </div>
+          <div class="col-md-1 d-grid">
+            <button type="submit" class="btn btn-gradient rounded-pill">Rechercher</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Statistiques visuelles -->
       <div class="row g-4 mb-4">
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Valorisation scientifique</h5>
-            <p>Diffusion de résultats de recherche, études d’impact, analyses sectorielles et recommandations pour les acteurs du développement.</p>
+        <div class="col-md-6">
+          <div class="schor-pub-stats-card p-4 h-100">
+            <h6 class="fw-bold mb-2">Publications par année</h6>
+            <canvas id="chartYear" height="120"></canvas>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Appui aux universités</h5>
-            <p>Accompagnement des universités et instituts supérieurs dans la publication scientifique et la valorisation des travaux de recherche.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card schor-card-premium p-4 h-100">
-            <h5 class="fw-bold mb-2">Culture data & sensibilisation</h5>
-            <p>Promotion de la culture data, formation à la rédaction scientifique et sensibilisation à l’importance de la donnée pour l’humanitaire.</p>
+        <div class="col-md-6">
+          <div class="schor-pub-stats-card p-4 h-100">
+            <h6 class="fw-bold mb-2">Répartition par type</h6>
+            <canvas id="chartType" height="120"></canvas>
           </div>
         </div>
       </div>
-      <div class="alert alert-info rounded-4 shadow-sm d-flex align-items-center gap-2 mb-4">
-        <img src="assets/icon-info.svg" width="28" alt="Info">
-        <div>Nos publications contribuent à la prise de décision éclairée, à la transparence et à l’innovation dans le secteur humanitaire et scientifique.</div>
+
+
+      <!-- Liste des publications avec pagination -->
+      <div class="card schor-card-premium p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0"><i class="bi bi-journals me-2"></i>Résultats de la recherche</h5>
+          <span id="resultsCount" class="text-secondary small"></span>
+        </div>
+        <div id="publicationsList"></div>
+        <nav aria-label="Pagination des publications" class="mt-3">
+          <ul class="pagination justify-content-center mb-0" id="pagination"></ul>
+        </nav>
       </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card schor-card-news glass h-100">
-            <div class="position-relative">
-              <img src="assets/news1.jpg" class="card-img-top rounded-top-4 schor-news-img" alt="Publication 1">
-              <span class="badge schor-badge-news">Data & Formation</span>
+
+      <!-- Modal publication détaillée -->
+      <div class="modal fade" id="pubModal" tabindex="-1" aria-labelledby="pubModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="pubModalLabel">Détail de la publication</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Nouveau programme de formation data</h5>
-              <p class="card-text">Webinaires, ateliers et documentation pour chercheurs et ONG.</p>
-              <a href="#" class="btn btn-outline-gradient rounded-pill">Lire plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card schor-card-news glass h-100">
-            <div class="position-relative">
-              <img src="assets/news2.jpg" class="card-img-top rounded-top-4 schor-news-img" alt="Publication 2">
-              <span class="badge schor-badge-news">Rapport scientifique</span>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Rapport sur l’innovation scientifique</h5>
-              <p class="card-text">Étude sur l’impact de la data et de l’innovation dans l’humanitaire.</p>
-              <a href="#" class="btn btn-outline-gradient rounded-pill">Lire plus</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card schor-card-news glass h-100">
-            <div class="position-relative">
-              <img src="assets/news3.jpg" class="card-img-top rounded-top-4 schor-news-img" alt="Publication 3">
-              <span class="badge schor-badge-news">Partenariat</span>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Nouveaux partenariats universitaires</h5>
-              <p class="card-text">SCHOR s’associe à des universités pour renforcer la recherche appliquée.</p>
-              <a href="#" class="btn btn-outline-gradient rounded-pill">Lire plus</a>
+            <div class="modal-body" id="pubModalBody"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Fermer</button>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Section à propos de la base -->
+      <section id="aboutBase" class="mt-5 mb-2">
+        <div class="card schor-card-premium p-4">
+          <h4 class="fw-bold mb-2"><i class="bi bi-info-circle me-2"></i>À propos de la base de publications SCHOR</h4>
+          <p class="mb-2">La base de publications SCHOR est un outil premium conçu pour :</p>
+          <ul class="mb-3">
+            <li><strong>Valoriser la production scientifique</strong> des chercheurs, institutions et partenaires africains et internationaux.</li>
+            <li><strong>Faciliter la recherche documentaire</strong> grâce à une interface intuitive, des filtres avancés et une recherche plein texte.</li>
+            <li><strong>Offrir des outils d’analyse et de visualisation</strong> : statistiques interactives, graphiques dynamiques, tendances par année/type.</li>
+            <li><strong>Permettre l’export et la citation rapide</strong> (formats BibTeX, EndNote, CSV, copier la citation, DOI direct).</li>
+            <li><strong>Garantir l’accessibilité</strong> : design responsive, navigation clavier, contrastes adaptés, icônes explicites.</li>
+            <li><strong>Enrichir la base en continu</strong> : ajout régulier de nouvelles publications, veille scientifique, suggestions des utilisateurs.</li>
+          </ul>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <h6 class="fw-bold mb-1"><i class="bi bi-lightbulb me-1"></i>Fonctionnalités clés</h6>
+              <ul class="mb-2">
+                <li>Recherche avancée multi-critères (titre, auteur, type, année...)</li>
+                <li>Filtres dynamiques et tri instantané</li>
+                <li>Affichage détaillé en modal, citation rapide</li>
+                <li>Export des références : BibTeX, EndNote, CSV</li>
+                <li>Statistiques et visualisations premium (Chart.js)</li>
+                <li>Pagination, accessibilité, responsive</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h6 class="fw-bold mb-1"><i class="bi bi-people me-1"></i>Pour qui ?</h6>
+              <ul class="mb-2">
+                <li>Étudiants, doctorants, chercheurs</li>
+                <li>Institutions, ONG, décideurs</li>
+                <li>Journalistes, consultants, innovateurs</li>
+                <li>Grand public curieux de la science</li>
+              </ul>
+              <h6 class="fw-bold mb-1"><i class="bi bi-shield-check me-1"></i>Qualité & éthique</h6>
+              <ul>
+                <li>Sources vérifiées, métadonnées complètes</li>
+                <li>Respect de la propriété intellectuelle</li>
+                <li>Transparence sur les critères d’indexation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="alert alert-info mt-4" role="alert">
+            <i class="bi bi-megaphone me-2"></i>
+            <strong>Vous souhaitez suggérer une publication ou signaler une erreur ?</strong> Contactez-nous à <a href="mailto:contact@schor.org">contact@schor.org</a> ou utilisez le formulaire dédié.
+          </div>
+        </div>
+      </section>
+
       <div class="mt-5">
-        <a href="conseils.html" class="btn btn-outline-gradient rounded-pill px-4 me-2">Retour aux conseils</a>
-        <a href="formation.html" class="btn btn-gradient rounded-pill px-4">Voir la formation</a>
+        <a href="conseils.html" class="btn btn-outline-gradient rounded-pill px-4 me-2" aria-label="Retour aux conseils"><i class="bi bi-arrow-left-circle me-1"></i>Retour aux conseils</a>
+        <a href="formation.html" class="btn btn-gradient rounded-pill px-4" aria-label="Voir la formation"><i class="bi bi-mortarboard me-1"></i>Voir la formation</a>
       </div>
+        </div> <!-- /col-lg-9 -->
+      </div> <!-- /row -->
     </div>
   </section>
   <!-- Footer -->
@@ -159,6 +335,196 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    // Exemple de publications (mock data)
+    const publications = [
+      {
+        titre: "Lutte contre le paludisme en Afrique de l’Ouest",
+        auteurs: ["Dr. A. Ndiaye", "Pr. M. Sow"],
+        type: "Article",
+        annee: 2024,
+        source: "The Lancet",
+        resume: "Analyse des stratégies innovantes pour la réduction du paludisme.",
+        lien: "https://www.thelancet.com/journals/lancet/article/pii/S0140673624001234/fulltext",
+        doi: "10.1016/S0140-6736(24)01234-5"
+      },
+      {
+        titre: "Évolution des politiques sanitaires post-COVID",
+        auteurs: ["Dr. F. Diop"],
+        type: "Revue",
+        annee: 2023,
+        source: "Revue Santé Publique",
+        resume: "Synthèse des réformes sanitaires et de leur impact sur la résilience des systèmes.",
+        lien: "#",
+        doi: "10.1234/rsp.2023.5678"
+      },
+      {
+        titre: "Ouvrage collectif sur l’innovation en Afrique",
+        auteurs: ["Collectif"],
+        type: "Ouvrage",
+        annee: 2022,
+        source: "Éditions Universitaires Africaines",
+        resume: "Panorama des innovations technologiques et sociales.",
+        lien: "#",
+        doi: "10.5678/eua.2022.1234"
+      },
+      {
+        titre: "Rapport annuel sur la sécurité alimentaire",
+        auteurs: ["FAO", "OMS"],
+        type: "Rapport",
+        annee: 2025,
+        source: "FAO/OMS",
+        resume: "Données et analyses sur la sécurité alimentaire mondiale.",
+        lien: "#",
+        doi: "10.4321/fao.oms.2025.001"
+      },
+      {
+        titre: "Périodique : Bulletin épidémiologique mensuel",
+        auteurs: ["Ministère de la Santé"],
+        type: "Périodique",
+        annee: 2025,
+        source: "Ministère de la Santé",
+        resume: "Suivi mensuel des maladies à déclaration obligatoire.",
+        lien: "#",
+        doi: "10.7890/ms.2025.002"
+      },
+      {
+        titre: "Journal : Innovations en santé publique",
+        auteurs: ["Dr. K. Ba"],
+        type: "Journal",
+        annee: 2024,
+        source: "Journal Africain de Santé",
+        resume: "Nouvelles approches et résultats de recherche en santé publique.",
+        lien: "#",
+        doi: "10.2345/jas.2024.003"
+      }
+    ];
+
+    // Recherche et filtrage
+    function filterPublications() {
+      const title = document.getElementById('searchTitle').value.toLowerCase();
+      const author = document.getElementById('searchAuthor').value.toLowerCase();
+      const type = document.getElementById('searchType').value;
+      const year = document.getElementById('searchYear').value;
+      return publications.filter(pub =>
+        (!title || pub.titre.toLowerCase().includes(title) || pub.resume.toLowerCase().includes(title)) &&
+        (!author || pub.auteurs.some(a => a.toLowerCase().includes(author))) &&
+        (!type || pub.type === type) &&
+        (!year || pub.annee == year)
+      );
+    }
+
+    // Affichage des publications
+    // Pagination et affichage des publications
+    let currentPage = 1;
+    const pageSize = 10;
+
+    function renderPublications(list) {
+      const container = document.getElementById('publicationsList');
+      const count = document.getElementById('resultsCount');
+      const pagination = document.getElementById('pagination');
+      count.textContent = list.length + ' résultat' + (list.length > 1 ? 's' : '');
+      if (!list.length) {
+        container.innerHTML = '<div class="alert alert-warning">Aucune publication trouvée.</div>';
+        pagination.innerHTML = '';
+        return;
+      }
+      // Pagination
+      const totalPages = Math.ceil(list.length / pageSize) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      const start = (currentPage - 1) * pageSize;
+      const end = start + pageSize;
+      const pageList = list.slice(start, end);
+      container.innerHTML = pageList.map((pub, idx) => `
+        <div class="schor-pub-result" tabindex="0" role="button" aria-label="Voir le détail de la publication : ${pub.titre.replace(/"/g,'&quot;')}" onclick="showPubModal(${start+idx})" onkeydown="if(event.key==='Enter'){showPubModal(${start+idx})}">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+            <span class="schor-pub-badge">${pub.type}</span>
+            <span class="schor-pub-meta">${pub.annee}</span>
+            <span class="schor-pub-meta">${pub.source}</span>
+            <span class="schor-pub-meta">DOI: <a href=\"https://doi.org/${pub.doi}\" target=\"_blank\">${pub.doi}</a></span>
+          </div>
+          <div class="schor-pub-title">${pub.titre}</div>
+          <div class="schor-pub-authors">${pub.auteurs.join(', ')}</div>
+          <div class="schor-pub-abstract">${pub.resume}</div>
+          <a href="${pub.lien}" target="_blank" class="schor-pub-link" aria-label="Lire la publication dans une nouvelle fenêtre"><i class="bi bi-box-arrow-up-right me-1"></i>Lire la publication</a>
+        </div>
+      `).join('');
+      // Pagination controls
+      let pagHtml = '';
+      if (totalPages > 1) {
+        pagHtml += `<li class="page-item${currentPage===1?' disabled':''}"><button class="page-link" aria-label="Page précédente" onclick="gotoPage(${currentPage-1})">&laquo;</button></li>`;
+        for (let i=1; i<=totalPages; i++) {
+          pagHtml += `<li class="page-item${i===currentPage?' active':''}"><button class="page-link" aria-label="Page ${i}" onclick="gotoPage(${i})">${i}</button></li>`;
+        }
+        pagHtml += `<li class="page-item${currentPage===totalPages?' disabled':''}"><button class="page-link" aria-label="Page suivante" onclick="gotoPage(${currentPage+1})">&raquo;</button></li>`;
+      }
+      pagination.innerHTML = pagHtml;
+    }
+
+    function gotoPage(page) {
+      currentPage = page;
+      updateAll();
+      window.scrollTo({top: document.getElementById('publicationsList').offsetTop-100, behavior:'smooth'});
+    }
+
+    // Modal publication détaillée
+    function showPubModal(idx) {
+      const filtered = filterPublications();
+      const pub = filtered[idx];
+      if (!pub) return;
+      const modalBody = document.getElementById('pubModalBody');
+      modalBody.innerHTML = `
+        <div class="mb-2"><span class="schor-pub-badge">${pub.type}</span> <span class="schor-pub-meta">${pub.annee}</span> <span class="schor-pub-meta">${pub.source}</span></div>
+        <h4 class="schor-pub-title mb-2">${pub.titre}</h4>
+        <div class="schor-pub-authors mb-2"><i class="bi bi-person-circle me-1"></i>${pub.auteurs.join(', ')}</div>
+        <div class="schor-pub-abstract mb-3">${pub.resume}</div>
+        <div class="mb-2"><strong>DOI :</strong> <a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a></div>
+        <div class="mb-2"><a href="${pub.lien}" target="_blank" class="btn btn-gradient rounded-pill"><i class="bi bi-box-arrow-up-right me-1"></i>Lire la publication</a></div>
+      `;
+      const modal = new bootstrap.Modal(document.getElementById('pubModal'));
+      modal.show();
+    }
+
+    // Statistiques visuelles
+    function renderStats(list) {
+      // Par année
+      const years = {};
+      list.forEach(pub => { years[pub.annee] = (years[pub.annee]||0)+1; });
+      const yearLabels = Object.keys(years).sort();
+      const yearData = yearLabels.map(y => years[y]);
+      // Par type
+      const types = {};
+      list.forEach(pub => { types[pub.type] = (types[pub.type]||0)+1; });
+      const typeLabels = Object.keys(types);
+      const typeData = typeLabels.map(t => types[t]);
+      // Chart.js
+      if (window.chartYear) window.chartYear.destroy();
+      if (window.chartType) window.chartType.destroy();
+      window.chartYear = new Chart(document.getElementById('chartYear').getContext('2d'), {
+        type: 'bar',
+        data: { labels: yearLabels, datasets: [{ label: 'Publications', data: yearData, backgroundColor: '#4f8cff' }] },
+        options: { plugins: { legend: { display: false } } }
+      });
+      window.chartType = new Chart(document.getElementById('chartType').getContext('2d'), {
+        type: 'pie',
+        data: { labels: typeLabels, datasets: [{ data: typeData, backgroundColor: ['#4f8cff','#ffb14f','#4fd6b0','#ff4f81','#b14fff','#ffd24f'] }] },
+        options: { plugins: { legend: { position: 'bottom' } } }
+      });
+    }
+
+    // Initialisation
+    function updateAll() {
+      const filtered = filterPublications();
+      renderPublications(filtered);
+      renderStats(filtered);
+    }
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      updateAll();
+    });
+    window.addEventListener('DOMContentLoaded', updateAll);
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </body>
 </html>
